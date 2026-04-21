@@ -216,20 +216,21 @@
     /* OCULTAR CURSORES EN MÓVIL */
     #cursor, #cursorRing { display: none !important; }
 }
- /* Ajuste equilibrado para que no esté tan pegado */
-    section { padding: 50px 20px !important; }
+/* Pon esto al final de tu @media (max-width: 768px) antes de la llave } */
     
-    #work { 
+    section { 
         padding-top: 10px !important; 
-        margin-top: 0px !important; /* Quitamos el margen negativo */
+        padding-bottom: 10px !important; 
+    }
+
+    #work { 
+        padding-top: 5px !important; 
+        margin-top: -60px !important; /* Valor exagerado para notar que sube */
     }
 
     .skills-grid { 
-        margin-bottom: 20px !important; 
+        margin-bottom: 0px !important; 
     }
-
-    /* El nombre CATE AMÉZAGA con espacio suficiente arriba */
-    .hero { padding-top: 130px !important; }
 </style>
 </head>
 <body>
