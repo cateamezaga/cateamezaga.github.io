@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cate Amézaga — VJ · Motion · Mapping</title>
+<title>Cate Amézaga — Live Events & TV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -166,42 +166,40 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 768px) {
-    /* Mantenemos tu navegación original */
+    /* Mantenemos tus espacios originales */
     nav { padding: 20px 24px; }
-    
-    /* El Hero se queda igual que al principio */
     .hero { padding: 120px 24px 80px; }
 
-    /* EL ÚNICO CAMBIO: El nombre ahora es flexible para no cortarse */
+    /* EL AJUSTE CLAVE: */
     .hero-name {
-      /* Bajamos el mínimo de 64px a 44px para que quepa en celulares */
-      font-size: clamp(44px, 12vw, 140px); 
+      /* Bajamos el mínimo a 42px para que quepa en cualquier móvil */
+      /* El máximo lo dejamos alto para que no pierda fuerza */
+      font-size: clamp(42px, 12vw, 140px); 
       line-height: 0.9;
-      white-space: nowrap; /* Sigue en una sola línea como querías */
       letter-spacing: -0.04em;
+      
+      /* IMPORTANTE: Cambiamos 'nowrap' por 'normal' */
+      /* Esto hace que si el nombre NO CABE, el apellido baje solo */
+      white-space: normal; 
+      word-wrap: break-word;
+      display: block;
     }
 
-    /* El contador para que no rompa el ancho de pantalla */
+    /* Evita que este texto empuje el diseño hacia los lados */
     .hero-counter {
       font-size: 9px;
       white-space: normal;
-      max-width: 80%;
+      max-width: 85%;
     }
 
-    /* Restauramos tus secciones originales */
+    /* Todo lo demás vuelve a ser como tu código inicial */
     section { padding: 80px 24px; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    
-    /* Mantenemos tus 3 columnas de proyectos originales */
     .project-header { grid-template-columns: 80px 1fr auto; }
-    
-    /* Restauramos tus skills originales */
     .skills-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    
-    /* Restauramos el tamaño de contacto original */
     .contact-big { font-size: 48px; }
-    
-    /* Ocultamos el cursor en móvil para evitar fallos visuales */
+
+    /* Quitamos el cursor en móvil porque da tirones */
     #cursor, #cursorRing { display: none; }
   }
 </style>
