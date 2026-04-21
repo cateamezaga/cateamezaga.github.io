@@ -166,52 +166,59 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 768px) {
-    /* 1. Restauramos tu navegación original */
+    /* 1. Navegación y Hero (Mantenemos lo que ya funciona) */
     nav { padding: 20px 24px; }
-    .nav-links { gap: 20px; }
-
-    /* 2. Hero: Ajuste solo para que el nombre no se corte */
-    .hero { padding: 120px 24px 80px; }
-    .hero-scroll { display: none; }
+    .hero { padding: 100px 24px 60px; }
     
     .hero-name { 
-      /* Bajamos el tamaño lo justo para que 'AMÉZAGA' quepa de lado a lado */
       font-size: clamp(42px, 11.5vw, 80px); 
       line-height: 0.9;
-      letter-spacing: -0.05em; /* Un poco más juntas para ganar espacio lateral */
-      white-space: nowrap; /* Volvemos a tu idea de una sola línea si es posible */
+      letter-spacing: -0.05em;
+      white-space: nowrap; 
       display: block;
     }
-    
-    /* Si el nombre sigue siendo muy largo para el móvil, esto evita que se corte la A */
-    @media (max-width: 400px) {
-      .hero-name { font-size: 10.5vw; }
-    }
 
-    /* 3. RESTAURACIÓN TOTAL DE LOS RECUADROS DE PROYECTOS */
-    section { padding: 80px 24px; }
-    
+    /* 2. REPARACIÓN DE PROYECTOS: Devolvemos la estructura de columnas */
     .project-header { 
-      display: grid; 
-      /* Restauramos tus 3 columnas originales: Año, Título, Botón */
-      grid-template-columns: 80px 1fr auto; 
-      align-items: center; 
-      gap: 32px; 
-      padding: 28px 32px; 
+      display: grid !important; /* Forzamos el grid */
+      grid-template-columns: 50px 1fr 30px; /* Año (izq), Título (centro), Cruz (der) */
+      align-items: flex-start; 
+      gap: 15px; 
+      padding: 30px 20px; /* Espacio interno del recuadro */
+      text-align: left; /* Alineamos todo a la izquierda */
     }
-    
-    /* Devolvemos el tamaño a tus textos de proyectos */
-    .project-title-item { font-size: 20px; }
-    .project-desc-item { font-size: 13px; }
 
-    /* 4. El resto de secciones vuelven a su estado inicial */
-    .about-grid { grid-template-columns: 1fr; gap: 80px; }
-    .skills-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
-    .contact-big { font-size: clamp(40px, 8vw, 100px); }
+    /* Ajustamos los textos dentro de los proyectos */
+    .project-year-item { 
+      font-size: 14px; 
+      opacity: 0.6;
+    }
+
+    .project-title-item { 
+      font-size: 18px; 
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .project-desc-item { 
+      font-size: 12px; 
+      line-height: 1.4;
+    }
+
+    /* Aseguramos que los tags (NOVALCT, etc) no se rompan */
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    /* 3. Resto de secciones */
+    section { padding: 60px 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-big { font-size: 40px; }
     
-    footer { padding: 24px 48px; display: flex; flex-direction: column; gap: 12px; }
-    
-    /* Desactivamos cursores para evitar conflictos en táctil */
     #cursor, #cursorRing { display: none; }
   }
 </style>
