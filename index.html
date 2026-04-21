@@ -181,34 +181,35 @@
       overflow: hidden;}
 
     .hero { 
-      padding: 110px 24px 40px; 
-      min-height: auto; 
+      padding: 100px 24px 40px; 
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      text-align: left;
     }
 
-    /* 2. El nombre con un tamaño fijo que cabe en cualquier móvil */
     .hero-name { 
-      font-size: 52px; 
+      /* Reducimos el tamaño máximo y mínimo significativamente */
+      font-size: clamp(32px, 12vw, 58px); 
       line-height: 0.9;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       width: 100%;
       margin: 0;
-      word-break: normal; /* Evita que rompa palabras a la mitad */
     }
 
-    /* 3. El apellido con un ajuste para que no se vea desproporcionado */
     .hero-name .line2 {
       display: block;
-      font-size: 48px; /* Ligeramente más pequeño para compensar el largo */
-      margin-top: 4px;
+      /* El apellido siempre un poco más pequeño para que no se vea "gigante" */
+      font-size: 0.85em; 
+      margin-top: 2px;
       color: var(--red);
     }
     .hero-scroll { display: none; }
-    .hero-counter {font-size: 10px;line-height: 1.5;margin-bottom: 24px;white-space: normal;max-width: 90%;}
-
+    .hero-counter .hero-counter {
+      font-size: 10px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+      white-space: normal;
+      color: var(--muted);
+    }
     section { padding: 60px 24px; }
 
     /* Proyectos: Cambio de 3 columnas a una estructura vertical */
