@@ -180,18 +180,27 @@
     }
 
     /* Hero: Ajuste de textos grandes */
-    .hero { padding: 120px 24px 60px; }
-    .hero-name .hero-name { 
-      font-size: clamp(38px, 14vw, 75px); /* Ajusta el tamaño según el ancho de pantalla */
-      line-height: 0.85;
-      word-break: break-word; /* Evita que el texto se salga de los bordes */
+   /* Fuerza al contenedor a no tener anchos fijos y permite que el texto baje */
+    .hero { 
+      padding: 120px 24px 60px; 
+      display: block; 
       width: 100%;
-      letter-spacing: -0.04em; /* Compacta un poco las letras para que quepan mejor */
+      overflow: hidden;
+    }
+
+    .hero-name { 
+      font-size: 42px; /* Tamaño fijo pequeño para móviles, olvida el clamp por ahora */
+      line-height: 1;
+      width: 100%;
+      word-wrap: break-word;
+      display: block;
+      margin: 0;
     }
 
     .hero-name .line2 {
       display: block;
-      font-size: 0.95em; /* Hace el apellido un pelín más pequeño para asegurar que entre */
+      font-size: 38px; /* El apellido un poco más pequeño */
+      color: var(--red);
     }
     .hero-scroll { display: none; }
     .hero-counter { font-size: 10px; white-space: normal; }
