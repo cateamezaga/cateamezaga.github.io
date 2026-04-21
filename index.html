@@ -166,23 +166,22 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 768px) {
-    /* Mantenemos tus espacios originales */
     nav { padding: 20px 24px; }
     .hero { padding: 120px 24px 80px; }
-
-    /* EL AJUSTE CLAVE: */
-    .hero-name {
-      /* Bajamos el mínimo a 42px para que quepa en cualquier móvil */
-      /* El máximo lo dejamos alto para que no pierda fuerza */
-      font-size: clamp(42px, 12vw, 140px); 
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      
-      /* IMPORTANTE: Cambiamos 'nowrap' por 'normal' */
-      /* Esto hace que si el nombre NO CABE, el apellido baje solo */
-      white-space: normal; 
-      word-wrap: break-word;
+   .hero-name { 
+      /* Bajamos el tamaño un poco para que AMÉZAGA entre de lado a lado */
+      font-size: clamp(42px, 12.5vw, 60px); 
+      line-height: 0.85;
+      letter-spacing: -0.05em; /* Juntamos un poco las letras para ganar espacio */
+      width: 100%;
+      white-space: normal; /* Permitimos que se divida en dos líneas si es necesario */
       display: block;
+    }
+
+    .hero-name .line2 {
+      display: block; /* Forzamos que el apellido vaya debajo del nombre */
+      font-size: 0.95em; /* El apellido ligeramente más pequeño para asegurar que entre */
+      margin-top: 0;
     }
 
     /* Evita que este texto empuje el diseño hacia los lados */
@@ -223,7 +222,7 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-noise"></div>
   <div class="hero-counter">01 &nbsp;/&nbsp; Técnica Audiovisual &nbsp;·&nbsp; Realizadora REA &nbsp;·&nbsp; Especialista en Pantallas LED &nbsp;·&nbsp; Live Events &amp; TV</div>
-  <h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
+  <h1 class="hero-name"<h1 class="hero-name">CATE <span class="line2">AMÉZAGA</span></h1>
   <div class="hero-subtitle">
     <div class="hero-subtitle-line"></div>
     <p class="hero-subtitle-text">Barcelona / Europe</p>
