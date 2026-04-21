@@ -180,36 +180,42 @@
       width: 100%;
       overflow: hidden;}
 
-    .hero { 
-      padding: 100px 24px 40px; 
+   .hero { 
+      padding: 100px 24px 60px; 
+      min-height: 70vh; /* Le da importancia visual sin ser gigante */
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
 
+    /* Nombre Principal: Escala fluida controlada */
     .hero-name { 
-      /* Reducimos el tamaño máximo y mínimo significativamente */
-      font-size: clamp(32px, 12vw, 58px); 
-      line-height: 0.9;
+      /* Mínimo 42px para que no sea chico, máximo 62px para que no sea enorme */
+      font-size: clamp(42px, 13vw, 62px); 
+      line-height: 0.85;
       letter-spacing: -0.04em;
       width: 100%;
       margin: 0;
+      text-transform: uppercase;
     }
 
+    /* Segunda línea (Apellido): Ajuste de compensación */
     .hero-name .line2 {
       display: block;
-      /* El apellido siempre un poco más pequeño para que no se vea "gigante" */
-      font-size: 0.85em; 
-      margin-top: 2px;
+      /* Un 10% más pequeño que el nombre para que 'AMÉZAGA' quepa por ancho */
+      font-size: 0.9em; 
+      margin-top: 4px;
       color: var(--red);
     }
     .hero-scroll { display: none; }
-    .hero-counter .hero-counter {
+   .hero-counter {
       font-size: 10px;
-      line-height: 1.4;
-      margin-bottom: 20px;
-      white-space: normal;
-      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+      white-space: normal; /* Permite que el texto baje si no cabe */
+      max-width: 85%;
     }
+  }
     section { padding: 60px 24px; }
 
     /* Proyectos: Cambio de 3 columnas a una estructura vertical */
