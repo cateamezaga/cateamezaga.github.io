@@ -166,54 +166,41 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media screen and (max-width: 768px) {
-    /* 1. NAVEGACIÓN: Aseguramos que no ocupe demasiado espacio */
-    nav {
-        padding: 10px 20px !important;
-        height: 60px !important;
-    }
+    /* 1. NAVEGACIÓN COMPACTA */
+    nav { padding: 10px 20px !important; height: 60px !important; }
     .nav-links a { font-size: 10px !important; }
 
-    /* 2. HERO: Reducimos el aire debajo de las etiquetas */
+    /* 2. HERO: Eliminamos el espacio sobrante abajo */
     .hero { 
-        padding: 100px 20px 20px !important; 
-        min-height: auto !important;
+        padding: 100px 20px 0px !important; /* Cero padding abajo */
+        margin-bottom: -20px !important; /* Subimos la siguiente sección */
     }
-    .hero-name { 
-        font-size: 42px !important; 
-        line-height: 1 !important;
-        margin-bottom: 15px !important;
-    }
-    .hero-tags { margin-top: 15px !important; }
+    .hero-name { font-size: 42px !important; line-height: 1 !important; }
+    .hero-tags { margin-top: 10px !important; padding-bottom: 0px !important; }
 
-    /* 3. SECCIONES: Aquí quitamos el margen enorme */
+    /* 3. SECCIÓN WORK: Forzamos a que suba */
     section { 
-        padding: 40px 20px !important; /* Espacio limpio entre bloques */
+        padding: 30px 20px !important; /* Reducimos el aire de todas las secciones */
     }
 
     #work { 
-        padding-top: 10px !important; /* Pegamos el título Work a las etiquetas de arriba */
+        padding-top: 0px !important; 
+        margin-top: 0px !important; 
     }
 
-    .section-title { 
-        margin-bottom: 25px !important; 
-        font-size: 32px !important;
-    }
+    .section-title { font-size: 32px !important; margin-bottom: 20px !important; }
 
-    /* 4. RECUADROS DE PROYECTOS: Restauramos el diseño original */
+    /* 4. RECUADROS: Volvemos a la estructura original que tenías */
     .project-header { 
         display: grid !important; 
-        grid-template-columns: 55px 1fr 25px !important; 
+        grid-template-columns: 60px 1fr 30px !important; 
         gap: 15px !important; 
         padding: 20px 15px !important;
-        align-items: center !important;
     }
-    
-    .project-year { font-size: 11px !important; }
-    .project-title-item { font-size: 16px !important; line-height: 1.2 !important; }
-    .project-desc-item { font-size: 11px !important; display: block !important; }
+    .project-title-item { font-size: 17px !important; }
 
-    /* OCULTAR ELEMENTOS QUE ESTORBAN EN MÓVIL */
-    #cursor, #cursorRing, .hero-scroll, .hero-noise { display: none !important; }
+    /* OCULTAR CURSORES */
+    #cursor, #cursorRing, .hero-scroll { display: none !important; }
 }
 /* --- ARREGLO FINAL DE ESPACIOS --- */
     section { 
