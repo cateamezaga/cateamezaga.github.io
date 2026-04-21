@@ -166,7 +166,6 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
  @media (max-width: 768px) {
-    /* Navegación: apilada para que no se corten los links */
     nav { 
       padding: 16px 20px; 
       flex-direction: column; 
@@ -188,16 +187,13 @@
       justify-content: center;
     }
 
-    /* Nombre Principal: Escala fluida controlada */
-    .hero-name { 
-      /* Mínimo 42px para que no sea chico, máximo 62px para que no sea enorme */
-      font-size: clamp(42px, 13vw, 62px); 
-      line-height: 0.85;
-      letter-spacing: -0.04em;
-      width: 100%;
-      margin: 0;
-      text-transform: uppercase;
-    }
+   .hero-name {
+    /* Bajamos un poco el 64px inicial a 45px para que entre en móviles */
+    font-size: clamp(45px, 12vw, 80px); 
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    white-space: nowrap; /* Mantiene el nombre en una línea como al principio */
+  }
 
     /* Segunda línea (Apellido): Ajuste de compensación */
     .hero-name .line2 {
@@ -208,13 +204,10 @@
       color: var(--red);
     }
     .hero-scroll { display: none; }
-   .hero-counter {
-      font-size: 10px;
-      line-height: 1.5;
-      margin-bottom: 24px;
-      white-space: normal; /* Permite que el texto baje si no cabe */
-      max-width: 85%;
-    }
+  .hero-counter {
+    font-size: 9px;
+    white-space: normal;
+    max-width: 80%;
   }
     section { padding: 60px 24px; }
 
