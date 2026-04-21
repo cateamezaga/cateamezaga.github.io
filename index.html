@@ -166,56 +166,54 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media screen and (max-width: 768px) {
-    /* 1. NAVEGACIÓN COMPACTA */
+    /* 1. NAVEGACIÓN: Aseguramos que no ocupe demasiado espacio */
     nav {
-        padding: 15px 20px !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
+        padding: 10px 20px !important;
+        height: 60px !important;
     }
-    .nav-logo { font-size: 13px !important; }
-    .nav-links { display: flex !important; gap: 10px !important; list-style: none !important; }
-    .nav-links a { font-size: 9px !important; letter-spacing: 0px !important; }
+    .nav-links a { font-size: 10px !important; }
 
-    /* 2. HERO (Nombre y etiquetas superiores) */
+    /* 2. HERO: Reducimos el aire debajo de las etiquetas */
     .hero { 
-        padding: 110px 20px 20px !important; 
+        padding: 100px 20px 20px !important; 
         min-height: auto !important;
     }
     .hero-name { 
-        font-size: clamp(40px, 10vw, 70px) !important; 
-        line-height: 0.9 !important;
-        margin-bottom: 20px !important;
+        font-size: 42px !important; 
+        line-height: 1 !important;
+        margin-bottom: 15px !important;
     }
+    .hero-tags { margin-top: 15px !important; }
 
-    /* 3. ESPACIOS ENTRE SECCIONES (Ajuste para quitar el hueco enorme) */
+    /* 3. SECCIONES: Aquí quitamos el margen enorme */
     section { 
-        padding: 40px 20px !important; 
+        padding: 40px 20px !important; /* Espacio limpio entre bloques */
     }
 
     #work { 
-        padding-top: 20px !important; 
-        margin-top: 0px !important; 
+        padding-top: 10px !important; /* Pegamos el título Work a las etiquetas de arriba */
     }
 
-    .skills-grid { 
-        margin-bottom: 10px !important; 
+    .section-title { 
+        margin-bottom: 25px !important; 
+        font-size: 32px !important;
     }
 
-    /* 4. RECUADROS DE PROYECTOS (Corrección de tamaño) */
+    /* 4. RECUADROS DE PROYECTOS: Restauramos el diseño original */
     .project-header { 
         display: grid !important; 
-        /* Mantenemos la estructura original para que no se deformen */
-        grid-template-columns: 60px 1fr 30px !important; 
+        grid-template-columns: 55px 1fr 25px !important; 
         gap: 15px !important; 
         padding: 20px 15px !important;
+        align-items: center !important;
     }
+    
     .project-year { font-size: 11px !important; }
-    .project-title-item { font-size: 17px !important; line-height: 1.2 !important; }
-    .project-desc-item { font-size: 11px !important; margin-top: 4px !important; }
+    .project-title-item { font-size: 16px !important; line-height: 1.2 !important; }
+    .project-desc-item { font-size: 11px !important; display: block !important; }
 
-    /* OCULTAR ELEMENTOS INNECESARIOS EN MÓVIL */
-    #cursor, #cursorRing, .hero-scroll { display: none !important; }
+    /* OCULTAR ELEMENTOS QUE ESTORBAN EN MÓVIL */
+    #cursor, #cursorRing, .hero-scroll, .hero-noise { display: none !important; }
 }
 /* --- ARREGLO FINAL DE ESPACIOS --- */
     section { 
