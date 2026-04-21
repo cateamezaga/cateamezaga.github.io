@@ -169,11 +169,18 @@
     /* 1. HERO (Lo dejamos como te gusta) */
     .hero { padding: 100px 24px 60px !important; }
     .hero-name { 
-      font-size: clamp(42px, 11.5vw, 80px) !important; 
+      /* Bajamos un poco el tamaño para asegurar que entre */
+      font-size: clamp(40px, 10.5vw, 75px) !important; 
       line-height: 0.9 !important;
+      letter-spacing: -0.05em !important; /* Juntamos las letras para ganar espacio */
       white-space: nowrap !important; 
+      display: block !important;
+      
+      /* ESTO ES LO QUE SALVA LA "A" */
+      width: 100% !important;
+      padding-right: 25px !important; /* Creamos un hueco a la derecha */
+      box-sizing: border-box !important; /* Asegura que el padding no estire el contenedor */
     }
-
     /* 2. RECUADROS DE PROYECTOS (Arreglo total) */
     .project-item {
       margin-bottom: 20px !important;
