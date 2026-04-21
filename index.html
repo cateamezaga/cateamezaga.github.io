@@ -177,23 +177,24 @@
     .nav-links { display: flex !important; gap: 10px !important; list-style: none !important; }
     .nav-links a { font-size: 9px !important; letter-spacing: 0px !important; }
 
-    /* 2. HERO Y NOMBRE */
+    /* 2. HERO (Nombre y etiquetas superiores) */
     .hero { 
-        padding: 120px 20px 40px !important; /* Reducimos el aire de abajo */
+        padding: 110px 20px 20px !important; 
         min-height: auto !important;
     }
     .hero-name { 
         font-size: clamp(40px, 10vw, 70px) !important; 
         line-height: 0.9 !important;
+        margin-bottom: 20px !important;
     }
 
-    /* 3. SECCIONES Y ESPACIOS (Aquí quitamos el margen enorme) */
+    /* 3. ESPACIOS ENTRE SECCIONES (Ajuste para quitar el hueco enorme) */
     section { 
-        padding: 50px 20px !important; /* Espacio estándar entre bloques */
+        padding: 40px 20px !important; 
     }
 
     #work { 
-        padding-top: 20px !important; /* Acercamos Work a las habilidades */
+        padding-top: 20px !important; 
         margin-top: 0px !important; 
     }
 
@@ -201,18 +202,20 @@
         margin-bottom: 10px !important; 
     }
 
-    /* 4. AJUSTE DE TARJETAS */
+    /* 4. RECUADROS DE PROYECTOS (Corrección de tamaño) */
     .project-header { 
         display: grid !important; 
-        grid-template-columns: 50px 1fr 30px !important; 
-        gap: 10px !important; 
+        /* Mantenemos la estructura original para que no se deformen */
+        grid-template-columns: 60px 1fr 30px !important; 
+        gap: 15px !important; 
         padding: 20px 15px !important;
     }
-    .project-title-item { font-size: 17px !important; }
-    .project-desc-item { font-size: 11px !important; }
+    .project-year { font-size: 11px !important; }
+    .project-title-item { font-size: 17px !important; line-height: 1.2 !important; }
+    .project-desc-item { font-size: 11px !important; margin-top: 4px !important; }
 
-    /* OCULTAR CURSORES */
-    #cursor, #cursorRing { display: none !important; }
+    /* OCULTAR ELEMENTOS INNECESARIOS EN MÓVIL */
+    #cursor, #cursorRing, .hero-scroll { display: none !important; }
 }
 /* --- ARREGLO FINAL DE ESPACIOS --- */
     section { 
