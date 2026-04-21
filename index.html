@@ -216,20 +216,24 @@
     /* OCULTAR CURSORES EN MÓVIL */
     #cursor, #cursorRing { display: none !important; }
 }
-/* Pon esto al final de tu @media (max-width: 768px) antes de la llave } */
-    
+/* Reset de espacios para que no se solape */
     section { 
-        padding-top: 10px !important; 
-        padding-bottom: 10px !important; 
+        padding-top: 80px !important; 
+        padding-bottom: 80px !important; 
     }
 
     #work { 
-        padding-top: 5px !important; 
-        margin-top: -60px !important; /* Valor exagerado para notar que sube */
+        padding-top: 40px !important; 
+        margin-top: 0px !important; /* IMPORTANTE: Volvemos a 0 para que no suba */
     }
 
     .skills-grid { 
-        margin-bottom: 0px !important; 
+        margin-bottom: 40px !important; 
+    }
+
+    /* Bajamos el nombre para que respire respecto al menú */
+    .hero { 
+        padding-top: 150px !important; 
     }
 </style>
 </head>
