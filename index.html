@@ -166,39 +166,52 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 768px) {
+    /* 1. Restauramos tu navegación original */
     nav { padding: 20px 24px; }
+    .nav-links { gap: 20px; }
+
+    /* 2. Hero: Ajuste solo para que el nombre no se corte */
     .hero { padding: 120px 24px 80px; }
-   .hero-name { 
-      /* Bajamos el tamaño un poco para que AMÉZAGA entre de lado a lado */
-      font-size: clamp(42px, 12.5vw, 60px); 
-      line-height: 0.85;
-      letter-spacing: -0.05em; /* Juntamos un poco las letras para ganar espacio */
-      width: 100%;
-      white-space: normal; /* Permitimos que se divida en dos líneas si es necesario */
+    .hero-scroll { display: none; }
+    
+    .hero-name { 
+      /* Bajamos el tamaño lo justo para que 'AMÉZAGA' quepa de lado a lado */
+      font-size: clamp(42px, 11.5vw, 80px); 
+      line-height: 0.9;
+      letter-spacing: -0.05em; /* Un poco más juntas para ganar espacio lateral */
+      white-space: nowrap; /* Volvemos a tu idea de una sola línea si es posible */
       display: block;
     }
-
-    .hero-name .line2 {
-      display: block; /* Forzamos que el apellido vaya debajo del nombre */
-      font-size: 0.95em; /* El apellido ligeramente más pequeño para asegurar que entre */
-      margin-top: 0;
+    
+    /* Si el nombre sigue siendo muy largo para el móvil, esto evita que se corte la A */
+    @media (max-width: 400px) {
+      .hero-name { font-size: 10.5vw; }
     }
 
-    /* Evita que este texto empuje el diseño hacia los lados */
-    .hero-counter {
-      font-size: 9px;
-      white-space: normal;
-      max-width: 85%;
-    }
-
-    /* Todo lo demás vuelve a ser como tu código inicial */
+    /* 3. RESTAURACIÓN TOTAL DE LOS RECUADROS DE PROYECTOS */
     section { padding: 80px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .project-header { grid-template-columns: 80px 1fr auto; }
-    .skills-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-    .contact-big { font-size: 48px; }
+    
+    .project-header { 
+      display: grid; 
+      /* Restauramos tus 3 columnas originales: Año, Título, Botón */
+      grid-template-columns: 80px 1fr auto; 
+      align-items: center; 
+      gap: 32px; 
+      padding: 28px 32px; 
+    }
+    
+    /* Devolvemos el tamaño a tus textos de proyectos */
+    .project-title-item { font-size: 20px; }
+    .project-desc-item { font-size: 13px; }
 
-    /* Quitamos el cursor en móvil porque da tirones */
+    /* 4. El resto de secciones vuelven a su estado inicial */
+    .about-grid { grid-template-columns: 1fr; gap: 80px; }
+    .skills-grid { display: grid; grid-template-columns: 1fr; gap: 2px; }
+    .contact-big { font-size: clamp(40px, 8vw, 100px); }
+    
+    footer { padding: 24px 48px; display: flex; flex-direction: column; gap: 12px; }
+    
+    /* Desactivamos cursores para evitar conflictos en táctil */
     #cursor, #cursorRing { display: none; }
   }
 </style>
@@ -222,7 +235,7 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-noise"></div>
   <div class="hero-counter">01 &nbsp;/&nbsp; Técnica Audiovisual &nbsp;·&nbsp; Realizadora REA &nbsp;·&nbsp; Especialista en Pantallas LED &nbsp;·&nbsp; Live Events &amp; TV</div>
-  <h1 class="hero-name"<h1 class="hero-name">CATE <span class="line2">AMÉZAGA</span></h1>
+  <h1 class="hero-name"<h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
   <div class="hero-subtitle">
     <div class="hero-subtitle-line"></div>
     <p class="hero-subtitle-text">Barcelona / Europe</p>
