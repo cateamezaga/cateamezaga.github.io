@@ -165,80 +165,44 @@
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
- @media (max-width: 768px) {
-    nav { 
-      padding: 16px 20px; 
-      flex-direction: column; 
-      gap: 12px; }
-    .nav-links { 
-      gap: 15px; }
-    .nav-links a { 
-      font-size: 9px;}
-      padding: 120px 24px 60px; 
-      display: block; 
-      width: 100%;
-      overflow: hidden;}
-
-   .hero { 
-      padding: 100px 24px 60px; 
-      min-height: 70vh; /* Le da importancia visual sin ser gigante */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-   .hero-name {
-    /* Bajamos un poco el 64px inicial a 45px para que entre en móviles */
-    font-size: clamp(45px, 12vw, 80px); 
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    white-space: nowrap; /* Mantiene el nombre en una línea como al principio */
-  }
-
-    /* Segunda línea (Apellido): Ajuste de compensación */
-    .hero-name .line2 {
-      display: block;
-      /* Un 10% más pequeño que el nombre para que 'AMÉZAGA' quepa por ancho */
-      font-size: 0.9em; 
-      margin-top: 4px;
-      color: var(--red);
-    }
-    .hero-scroll { display: none; }
-  .hero-counter {
-    font-size: 9px;
-    white-space: normal;
-    max-width: 80%;
-  }
-    section { padding: 60px 24px; }
-
-    /* Proyectos: Cambio de 3 columnas a una estructura vertical */
-    .project-header { 
-      grid-template-columns: 1fr auto; 
-      gap: 12px;
-      padding: 20px 16px; 
-    }
-    .project-year { 
-      grid-column: 1 / -1; 
-      margin-bottom: 4px; 
-    }
-    .project-title-item { font-size: 18px; }
-
-    /* Imágenes de proyectos: 1 por fila en pantallas muy chicas */
-    .panel-grid { 
-      grid-template-columns: 1fr; 
-    }
-
-    /* Bio y Skills: Todo a una columna */
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .skills-grid { grid-template-columns: 1fr; }
-
-    /* Contacto y Footer */
-    .contact-big { font-size: 38px; word-break: break-all; }
-    .contact-meta { flex-direction: column; gap: 20px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
+@media (max-width: 768px) {
+    /* Mantenemos tu navegación original */
+    nav { padding: 20px 24px; }
     
-    /* Ocultar cursor especial en móviles (opcional pero recomendado) */
-    .cursor, .cursor-ring { display: none; }
+    /* El Hero se queda igual que al principio */
+    .hero { padding: 120px 24px 80px; }
+
+    /* EL ÚNICO CAMBIO: El nombre ahora es flexible para no cortarse */
+    .hero-name {
+      /* Bajamos el mínimo de 64px a 44px para que quepa en celulares */
+      font-size: clamp(44px, 12vw, 140px); 
+      line-height: 0.9;
+      white-space: nowrap; /* Sigue en una sola línea como querías */
+      letter-spacing: -0.04em;
+    }
+
+    /* El contador para que no rompa el ancho de pantalla */
+    .hero-counter {
+      font-size: 9px;
+      white-space: normal;
+      max-width: 80%;
+    }
+
+    /* Restauramos tus secciones originales */
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    
+    /* Mantenemos tus 3 columnas de proyectos originales */
+    .project-header { grid-template-columns: 80px 1fr auto; }
+    
+    /* Restauramos tus skills originales */
+    .skills-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    
+    /* Restauramos el tamaño de contacto original */
+    .contact-big { font-size: 48px; }
+    
+    /* Ocultamos el cursor en móvil para evitar fallos visuales */
+    #cursor, #cursorRing { display: none; }
   }
 </style>
 </head>
