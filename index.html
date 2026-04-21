@@ -165,41 +165,65 @@
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {
-    /* 1. EL NOMBRE: Lo hacemos un pelín más pequeño para que no empuje las paredes */
+/* --- Busca esta línea en tu código --- */
+  @media (max-width: 768px) {
+    
+    /* 1. ESTO ARREGLA EL MENÚ DE ARRIBA (CA_PORTFOLIO, WORK, etc) */
+    nav {
+      padding: 15px 20px !important;
+      justify-content: space-between !important;
+      flex-wrap: nowrap !important;
+    }
+
+    .nav-logo {
+      font-size: 13px !important; /* Un pelín más pequeño para que no empuje */
+      white-space: nowrap !important;
+      margin-right: 10px !important;
+    }
+
+    .nav-links {
+      display: flex !important;
+      gap: 10px !important; /* Espacio entre links */
+      margin-left: auto !important;
+    }
+
+    .nav-links a {
+      font-size: 10px !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    /* 2. EL NOMBRE (Lo que ya funcionaba) */
     .hero-name { 
       font-size: clamp(38px, 9.8vw, 70px) !important; 
       line-height: 0.85 !important;
       letter-spacing: -0.05em !important;
-      white-space: nowrap !important; /* Mantenemos tu línea única */
+      white-space: nowrap !important; 
       display: block !important;
-      width: fit-content !important; /* El nombre solo ocupa lo que mide su texto */
+      width: fit-content !important;
       margin-bottom: 20px !important;
     }
 
-    /* 2. LOS CUADROS: Blindados para que no se muevan */
+    /* 3. LOS CUADROS DE PROYECTOS (Lo que ya funcionaba) */
     .project-header { 
       display: grid !important; 
-      /* Año (izq), Título (centro), Cruz (der) */
       grid-template-columns: 60px 1fr 30px !important; 
       gap: 15px !important; 
       padding: 30px 20px !important; 
-      width: 100% !important; /* Los cuadros siempre ocupan todo el ancho */
+      width: 100% !important;
       align-items: start !important;
-      border: 1px solid rgba(255,255,255,0.1); /* Aseguramos que se vea el borde */
     }
 
-    /* Forzamos alineación de textos en los proyectos */
     .project-info-item {
       text-align: left !important;
       display: flex !important;
       flex-direction: column !important;
     }
 
-    /* 3. GENERAL */
+    /* Ajustes generales de limpieza */
     section { padding: 60px 20px !important; }
     #cursor, #cursorRing { display: none !important; }
-  }
+  } 
+  /* --- Aquí termina el bloque --- */
 </style>
 </head>
 <body>
