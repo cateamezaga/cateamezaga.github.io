@@ -25,9 +25,9 @@
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; cursor: crosshair; overflow-x: hidden; }
 
 .cursor {
-  width: 20px;
-  height: 20px;
-  background: rgba(232, 0, 61, 0.4);
+  width: 8px;
+  height: 8px;
+  background: var(--red);
   border-radius: 50%;
   position: fixed;
   top: 0;
@@ -35,12 +35,35 @@
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  filter: blur(8px);
-  transition: transform 0.08s ease-out;
 }
 
-.cursor-ring {
-  display: none;
+.cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  font-size: 12px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease, opacity 0.2s;
+  z-index: 9998;
+  backdrop-filter: blur(6px);
+}
+
+.cursor-label span {
+  pointer-events: none;
+}
+
+.cursor-label.active {
+  transform: translate(-50%, -50%) scale(1);
 }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
