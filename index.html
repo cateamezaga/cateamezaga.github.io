@@ -166,60 +166,57 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 768px) {
-    /* 1. Navegación y Hero (Mantenemos lo que ya funciona) */
-    nav { padding: 20px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    
+    /* 1. HERO (Lo dejamos como te gusta) */
+    .hero { padding: 100px 24px 60px !important; }
     .hero-name { 
-      font-size: clamp(42px, 11.5vw, 80px); 
-      line-height: 0.9;
-      letter-spacing: -0.05em;
-      white-space: nowrap; 
-      display: block;
+      font-size: clamp(42px, 11.5vw, 80px) !important; 
+      line-height: 0.9 !important;
+      white-space: nowrap !important; 
     }
 
-    /* 2. REPARACIÓN DE PROYECTOS: Devolvemos la estructura de columnas */
+    /* 2. RECUADROS DE PROYECTOS (Arreglo total) */
+    .project-item {
+      margin-bottom: 20px !important;
+    }
+
     .project-header { 
-      display: grid !important; /* Forzamos el grid */
-      grid-template-columns: 50px 1fr 30px; /* Año (izq), Título (centro), Cruz (der) */
-      align-items: flex-start; 
-      gap: 15px; 
-      padding: 30px 20px; /* Espacio interno del recuadro */
-      text-align: left; /* Alineamos todo a la izquierda */
+      display: grid !important; 
+      /* Año (izq), Título (centro), Cruz (der) */
+      grid-template-columns: 60px 1fr 20px !important; 
+      gap: 15px !important; 
+      padding: 30px 20px !important; 
+      width: 100% !important;
+      align-items: start !important;
     }
 
-    /* Ajustamos los textos dentro de los proyectos */
-    .project-year-item { 
-      font-size: 14px; 
-      opacity: 0.6;
+    /* Forzamos que los textos no se centren y se vean bien */
+    .project-info-item {
+      text-align: left !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
     }
 
     .project-title-item { 
-      font-size: 18px; 
-      line-height: 1.2;
-      margin-bottom: 8px;
+      font-size: 18px !important; 
+      margin: 0 !important;
     }
 
     .project-desc-item { 
-      font-size: 12px; 
-      line-height: 1.4;
+      font-size: 12px !important; 
+      max-width: 100% !important;
     }
 
-    /* Aseguramos que los tags (NOVALCT, etc) no se rompan */
+    /* Ajuste de los tags para que no estiren el cuadro */
     .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: flex-start !important;
     }
 
-    /* 3. Resto de secciones */
-    section { padding: 60px 20px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .contact-big { font-size: 40px; }
-    
-    #cursor, #cursorRing { display: none; }
+    /* 3. OTROS */
+    section { padding: 60px 20px !important; }
+    #cursor, #cursorRing { display: none !important; }
   }
 </style>
 </head>
