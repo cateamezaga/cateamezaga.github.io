@@ -221,6 +221,43 @@
     .hero { 
         padding-top: 160px !important; 
     }
+  .marquee-container {
+  margin-top: 40px;
+  overflow: hidden;
+  display: flex;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 0;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.marquee-content {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--red);
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+  padding-right: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Ajuste para móvil para que no ocupe nada de espacio */
+@media screen and (max-width: 768px) {
+  .marquee-container {
+    margin-top: 20px;
+    padding: 10px 0;
+  }
+  .marquee-content {
+    font-size: 11px;
+  }
+}
 </style>
 </head>
 <body>
@@ -247,17 +284,12 @@
     <div class="hero-subtitle-line"></div>
     <p class="hero-subtitle-text">Barcelona / Europe</p>
   </div>
-  <div class="hero-tags">
-    <span class="hero-tag">3D Mapping</span>
-    <span class="hero-tag">VJ Live</span>
-    <span class="hero-tag">Laser Shows</span>
-    <span class="hero-tag">LED Screens</span>
-    <span class="hero-tag">Motion Design</span>
-    <span class="hero-tag">Cinema 4D</span>
-    <span class="hero-tag">Resolume Arena</span>
-    <span class="hero-tag">MadMapper</span>
-    <span class="hero-tag">After Effects</span>
-    <span class="hero-tag">Immersive Experiences</span>
+ <div class="marquee-container">
+  <div class="marquee-content">
+    3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;
+  </div>
+  <div class="marquee-content">
+    3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;
   </div>
 </section>
 <section id="work">
