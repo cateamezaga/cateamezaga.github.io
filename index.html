@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; cursor: default; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
   /* NAVEGACIÓN */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
@@ -32,69 +32,65 @@
   .nav-links a:hover { color: var(--text); }
 
   /* HERO */
-  .hero { min-height: auto; display: flex; flex-direction: column; justify-content: flex-start; padding: 140px 48px 60px; position: relative; overflow: hidden; }
+  .hero { min-height: auto; display: flex; flex-direction: column; justify-content: flex-start; padding: 140px 48px 60px; position: relative; }
   .hero-counter { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--red); margin-bottom: 32px; line-height: 1.8; }
-  .hero-name { font-size: clamp(64px, 12vw, 140px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; position: relative; z-index: 1; }
+  .hero-name { font-size: clamp(64px, 12vw, 140px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; margin-bottom: 24px; }
   .hero-name .line2 { color: var(--red); display: block; }
-  .hero-subtitle { margin-top: 32px; display: flex; align-items: center; gap: 24px; }
-  .hero-subtitle-line { width: 48px; height: 1px; background: var(--red); flex-shrink: 0; }
-  .hero-subtitle-text { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0.06em; }
+  .hero-subtitle { display: flex; align-items: center; gap: 24px; margin-bottom: 40px; }
+  .hero-subtitle-line { width: 48px; height: 1px; background: var(--red); }
+  .hero-subtitle-text { font-family: var(--mono); font-size: 13px; color: var(--muted); }
 
-  /* MARQUESINA MEJORADA */
-  .marquee-container {
-    margin-top: 50px;
-    overflow: hidden;
-    display: flex;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 16px 0;
-    white-space: nowrap;
+  /* MARQUESINA CORREGIDA - UNA SOLA LÍNEA */
+  .marquee-wrapper {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.02);
-    /* Preparación para animación de entrada */
+    padding: 18px 0;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); /* Forzar ancho completo */
+    
+    /* Animación de entrada suave */
     opacity: 0;
-    transform: translateY(20px);
-    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(15px);
+    transition: all 1s ease-out;
   }
-  .marquee-container.visible {
+  
+  .marquee-wrapper.visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  .marquee-container {
+    display: flex;
+    width: max-content;
+    animation: scroll-marquee 40s linear infinite;
+  }
+
   .marquee-content {
     font-family: var(--mono);
     font-size: 13px;
-    color: #FFFFFF !important; /* Blanco profesional */
-    display: inline-block;
-    animation: marquee 45s linear infinite;
-    text-transform: uppercase;
+    color: #FFFFFF !important;
+    white-space: nowrap;
     letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding-right: 50px; /* Espacio entre el final e inicio del loop */
   }
-  @keyframes marquee {
+
+  @keyframes scroll-marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
 
-  /* SECCIONES */
-  section { padding: 80px 48px; }
-  .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; margin-bottom: 16px; }
-  .section-title { font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1; letter-spacing: -0.02em; margin-bottom: 40px; }
-  
-  /* PROYECTOS */
-  .project-item { border: 1px solid var(--border); background: var(--surface); margin-bottom: 2px; transition: border-color 0.2s; }
-  .project-header { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 32px; padding: 28px 32px; cursor: pointer; }
-  .project-year { font-family: var(--mono); font-size: 12px; color: var(--red); }
-  .project-title-item { font-size: 20px; font-weight: 700; }
-  .project-tools-item { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .proj-pill { font-family: var(--mono); font-size: 9px; border: 1px solid var(--border2); padding: 3px 10px; color: var(--muted); text-transform: uppercase; }
-
   /* REVEAL SYSTEM */
-  .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s all; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media screen and (max-width: 768px) {
     nav { padding: 10px 20px; }
     .hero { padding: 120px 20px 40px; }
     .hero-name { font-size: 48px; }
-    section { padding: 40px 20px; }
   }
 </style>
 </head>
@@ -110,64 +106,44 @@
   </ul>
 </nav>
 
-<main>
-  <section class="hero" id="home">
-    <p class="hero-counter reveal">01 / TÉCNICA AUDIOVISUAL · REALIZADORA REA · ESPECIALISTA LED</p>
-    <h1 class="hero-name reveal">CATE<br><span class="line2">AMÉZAGA</span></h1>
-    <div class="hero-subtitle reveal">
-      <div class="hero-subtitle-line"></div>
-      <p class="hero-subtitle-text">Barcelona / Europe</p>
-    </div>
-
-    <div class="marquee-container reveal">
-      <div class="marquee-content">
-        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-      </div>
-      <div class="marquee-content">
-        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <p class="section-label reveal">02 / Selected</p>
-    <h2 class="section-title reveal">Work</h2>
-    <div class="projects-list">
-      <div class="project-item reveal">
-        <div class="project-header">
-          <div class="project-year">2024</div>
-          <div>
-            <div class="project-title-item">Sala Razzmatazz — Temporada 24/25</div>
-            <div class="project-tools-item">
-              <span class="proj-pill">Resolume Arena</span>
-              <span class="proj-pill">Beyond</span>
-              <span class="proj-pill">MadMapper</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-  </section>
-</main>
-
-<footer>
-  <div style="padding: 40px; text-align: center; border-top: 1px solid var(--border);">
-    <p style="font-family: var(--mono); font-size: 11px; color: var(--muted);">© 2026 Caterina Amézaga — Creative · Motion · Mapping</p>
+<section class="hero" id="home">
+  <div class="hero-counter reveal">01 / TÉCNICA AUDIOVISUAL · REALIZADORA REA · ESPECIALISTA LED</div>
+  <h1 class="hero-name reveal">CATE<br><span class="line2">AMÉZAGA</span></h1>
+  
+  <div class="hero-subtitle reveal">
+    <div class="hero-subtitle-line"></div>
+    <p class="hero-subtitle-text">Barcelona / Europe</p>
   </div>
-</footer>
+
+  <div class="marquee-wrapper reveal">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+      </div>
+      <div class="marquee-content">
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding: 60px 48px;">
+  <p class="section-label reveal">02 / Selected</p>
+  <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 30px;" class="reveal">Work</h2>
+  <p class="reveal" style="color: var(--muted); font-family: var(--mono);">Proyectos en desarrollo...</p>
+</section>
 
 <script>
-  // Sistema de aparición al hacer scroll y carga
-  const observerOptions = { threshold: 0.1 };
+  // Script corregido para asegurar que la marquesina aparezca
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
-  }, observerOptions);
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
