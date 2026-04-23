@@ -24,204 +24,81 @@
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; cursor: default; overflow-x: hidden; }
 
-.cursor {
-  width: 8px;
-  height: 8px;
-  background: var(--red);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-label {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.75);
-  color: white;
-  font-size: 12px;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease, opacity 0.2s;
-  z-index: 9998;
-  backdrop-filter: blur(6px);
-}
-.cursor-label span {
-  pointer-events: none;
-}
-.cursor-label.active {
-  transform: translate(-50%, -50%) scale(1);
-}
- nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  /* NAVEGACIÓN */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--red); text-decoration: none; }
   .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
 
-  .hero { min-height: auto; display: flex; flex-direction: column; justify-content:flex-start; padding:140px 48px 60px; position: relative; overflow: hidden; }
-  .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(232,0,61,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,61,0.04) 1px, transparent 1px); background-size: 80px 80px; animation: gridDrift 20s linear infinite; }
-  @keyframes gridDrift { from { transform: translateY(0); } to { transform: translateY(80px); } }
-  .hero-noise { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,0,61,0.06) 0%, transparent 70%); }
-  .hero-counter { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--red); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; line-height: 1.8; }
-  .hero-name { font-size: clamp(64px, 12vw, 140px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+  /* HERO */
+  .hero { min-height: auto; display: flex; flex-direction: column; justify-content: flex-start; padding: 140px 48px 60px; position: relative; overflow: hidden; }
+  .hero-counter { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--red); margin-bottom: 32px; line-height: 1.8; }
+  .hero-name { font-size: clamp(64px, 12vw, 140px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; position: relative; z-index: 1; }
   .hero-name .line2 { color: var(--red); display: block; }
-  .hero-subtitle { margin-top: 32px; display: flex; align-items: center; gap: 24px; opacity: 0; animation: fadeUp 0.7s 0.6s forwards; }
+  .hero-subtitle { margin-top: 32px; display: flex; align-items: center; gap: 24px; }
   .hero-subtitle-line { width: 48px; height: 1px; background: var(--red); flex-shrink: 0; }
   .hero-subtitle-text { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: 0.06em; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; opacity: 0; animation: fadeUp 0.7s 0.8s forwards; }
-  .hero-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; border: 1px solid var(--border2); padding: 6px 16px; color: var(--muted); text-transform: uppercase; transition: border-color 0.2s, color 0.2s; }
-  .hero-tag:hover { border-color: var(--red); color: var(--text); }
-  .hero-scroll { position: absolute; right: 48px; bottom: 80px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); writing-mode: vertical-rl; display: flex; align-items: center; gap: 16px; opacity: 0; animation: fadeUp 0.7s 1s forwards; }
-  .hero-scroll::after { content: ''; width: 1px; height: 60px; background: linear-gradient(to bottom, var(--red), transparent); display: block; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* MARQUESINA MEJORADA */
+  .marquee-container {
+    margin-top: 50px;
+    overflow: hidden;
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 0;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.02);
+    /* Preparación para animación de entrada */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .marquee-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .marquee-content {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: #FFFFFF !important; /* Blanco profesional */
+    display: inline-block;
+    animation: marquee 45s linear infinite;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECCIONES */
   section { padding: 80px 48px; }
   .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; margin-bottom: 16px; }
   .section-title { font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1; letter-spacing: -0.02em; margin-bottom: 40px; }
-
-  #work { background: var(--bg); }
-  .projects-list { display: flex; flex-direction: column; gap: 2px; }
-
-  .project-item { border: 1px solid var(--border); background: var(--surface); overflow: hidden; transition: border-color 0.2s; }
-  .project-item:hover { border-color: var(--border2); }
-  .project-item.open { border-color: var(--red); }
-
-  .project-header { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 32px; padding: 28px 32px; cursor: pointer; position: relative; transition: background 0.2s; }
-  .project-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--red); transform: scaleY(0); transform-origin: bottom; transition: transform 0.25s; }
-  .project-item.open .project-header::before, .project-header:hover::before { transform: scaleY(1); }
-  .project-header:hover { background: var(--surface2); }
-
-  .project-year { font-family: var(--mono); font-size: 12px; color: var(--red); letter-spacing: 0.05em; }
-  .project-cat { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
-  .project-title-item { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
-  .project-desc-item { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.5; max-width: 560px; }
-  .project-tools-item { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .proj-pill { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; border: 1px solid var(--border2); padding: 3px 10px; color: var(--muted); text-transform: uppercase; }
-
-  .project-toggle { font-family: var(--mono); font-size: 22px; color: var(--border2); transition: color 0.2s, transform 0.35s; line-height: 1; user-select: none; min-width: 28px; text-align: center; font-weight: 300; }
-  .project-item.open .project-toggle { transform: rotate(45deg); color: var(--red); }
-  .project-header:hover .project-toggle { color: var(--muted); }
-
-  .project-panel { max-height: 0; overflow: hidden; transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1); }
-  .project-item.open .project-panel { max-height: 1200px; border-top: 1px solid var(--border); }
-  .panel-inner { padding: 32px; }
-  .panel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-  .panel-img { aspect-ratio: 16/9; overflow: hidden; background: var(--surface2); border: 1px solid var(--border); position: relative; }
-  .panel-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
-  .panel-img:hover img { transform: scale(1.06); }
-  .panel-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-  .panel-placeholder-icon { font-size: 26px; opacity: 0.18; }
-  .panel-placeholder-text { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; opacity: 0.4; }
-  .panel-add-note { margin-top: 18px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; }
-  .panel-add-note span { color: var(--red); }
-
-  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .about-bio-text { font-size: 22px; font-weight: 500; line-height: 1.5; letter-spacing: -0.01em; }
-  .about-bio-text em { font-style: normal; color: var(--red); }
-  .about-bio-sub { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 24px; line-height: 1.7; }
-  .about-stat { padding: 24px 0; border-bottom: 1px solid var(--border); }
-  .about-stat:first-child { border-top: 1px solid var(--border); }
-  .about-stat-num { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
-  .about-stat-num span { color: var(--red); }
-  .about-stat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
-
-  #skills { background: var(--bg); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; }
-  .skill-cat { background: var(--surface); border: 1px solid var(--border); padding: 32px; transition: background 0.2s; }
-  .skill-cat:hover { background: var(--surface2); }
-  .skill-cat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--red); text-transform: uppercase; margin-bottom: 20px; }
-  .skill-list { list-style: none; }
-  .skill-list li { font-size: 15px; font-weight: 500; padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--muted); transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
-  .skill-list li::before { content: '▸'; color: var(--red); font-size: 10px; }
-  .skill-list li:last-child { border-bottom: none; }
-  .skill-list li:hover { color: var(--text); }
-
-  #contact { background: var(--surface); border-top: 1px solid var(--border); text-align: center; }
-  .avail-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--border2); padding: 8px 20px; margin-bottom: 40px; text-transform: uppercase; }
-  .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
-  .contact-big { font-size: clamp(40px,8vw,100px); font-weight: 800; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 48px; }
-  .contact-big a { color: var(--text); text-decoration: none; border-bottom: 3px solid var(--red); transition: color 0.2s; }
-  .contact-big a:hover { color: var(--red); }
-  .contact-meta { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
-  .contact-meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 4px; }
-  .contact-meta-val { font-size: 15px; font-weight: 600; }
-
-  footer { padding: 24px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
- footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
-
-  /* --- MÓVIL (LIMPIEZA Y ESPACIOS) --- */
-  @media screen and (max-width: 768px) {
-      nav { padding: 10px 20px !important; height: 60px !important; }
-      .nav-links a { font-size: 10px !important; }
-      .hero { padding: 120px 20px 20px !important; min-height: auto !important; }
-      .hero-name { font-size: 42px !important; line-height: 1 !important; }
-      section { padding: 40px 20px !important; }
-      #work { padding-top: 20px !important; margin-top: 0px !important; }
-      .project-header { 
-          display: grid !important; 
-          grid-template-columns: 60px 1fr 30px !important; 
-          gap: 15px !important; 
-          padding: 20px 15px !important;
-      }
-      #cursor, #cursorRing, .hero-scroll { display: none !important; }
-    
-/* MARQUESINA MEJORADA */
-.marquee-container {
-  margin-top: 40px;
-  overflow: hidden;
-  display: flex;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 16px 0;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.02);
   
-  /* Animación de entrada */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
+  /* PROYECTOS */
+  .project-item { border: 1px solid var(--border); background: var(--surface); margin-bottom: 2px; transition: border-color 0.2s; }
+  .project-header { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 32px; padding: 28px 32px; cursor: pointer; }
+  .project-year { font-family: var(--mono); font-size: 12px; color: var(--red); }
+  .project-title-item { font-size: 20px; font-weight: 700; }
+  .project-tools-item { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .proj-pill { font-family: var(--mono); font-size: 9px; border: 1px solid var(--border2); padding: 3px 10px; color: var(--muted); text-transform: uppercase; }
 
-/* Esta clase es la que la hace aparecer */
-.marquee-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  /* REVEAL SYSTEM */
+  .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-.marquee-content {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.9) !important; /* Blanco claro profesional */
-  display: inline-block;
-  animation: marquee 40s linear infinite;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+  @media screen and (max-width: 768px) {
+    nav { padding: 10px 20px; }
+    .hero { padding: 120px 20px 40px; }
+    .hero-name { font-size: 48px; }
+    section { padding: 40px 20px; }
   }
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
   <a class="nav-logo" href="#home">CA_PORTFOLIO</a>
@@ -233,316 +110,67 @@
   </ul>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-grid-bg"></div>
-  <div class="hero-noise"></div>
-  <div class="hero-counter">01 &nbsp;/&nbsp; Técnica Audiovisual &nbsp;·&nbsp; Realizadora REA &nbsp;·&nbsp; Especialista en Pantallas LED &nbsp;·&nbsp; Live Events &amp; TV</div>
-  <h1 class="hero-name"<h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
-  <div class="hero-subtitle">
-    <div class="hero-subtitle-line"></div>
-    <p class="hero-subtitle-text">Barcelona / Europe</p>
-  </div>
-<div class="marquee-container reveal">
-  <div class="marquee-content">
-    3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-    3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-  </div>
-  <div class="marquee-content">
-    3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-    3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
-  </div>
-</div>
-</section>
-<section id="work">
-  <p class="section-label reveal">02 / Selected</p> <h2 class="section-title reveal">Work</h2>      <div class="projects-list">
+<main>
+  <section class="hero" id="home">
+    <p class="hero-counter reveal">01 / TÉCNICA AUDIOVISUAL · REALIZADORA REA · ESPECIALISTA LED</p>
+    <h1 class="hero-name reveal">CATE<br><span class="line2">AMÉZAGA</span></h1>
+    <div class="hero-subtitle reveal">
+      <div class="hero-subtitle-line"></div>
+      <p class="hero-subtitle-text">Barcelona / Europe</p>
+    </div>
 
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2026</div>
-        <div>
-          <div class="project-cat">Television · LED · Stage</div>
-          <div class="project-title-item">Alla Tú / Tu Cara Me suena — Elenco</div>
-          <div class="project-desc-item">Técnica AV en producciones de televisión española. Montaje y configuración de pantallas LED con NovaLCT, Asistencia tècnica en programas en vivo.</div>
-          <div class="project-tools-item"><span class="proj-pill">NovaLCT</span><span class="proj-pill">Resolume Arena</span><span class="proj-pill">LED Assembly</span></div>
-        </div>
-        <div class="project-toggle">+</div>
+    <div class="marquee-container reveal">
+      <div class="marquee-content">
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
       </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">📺</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">📺</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">📺</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-        </div>
-        <p class="panel-add-note"></p>
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2024–25</div>
-        <div>
-          <div class="project-cat">Live Venue · Laser · LED · VJ</div>
-          <div class="project-title-item">Sala Razzmatazz — Temporada 2024/25</div>
-          <div class="project-desc-item">Técnica AV en venue europeo de referencia. REA multicámara, Laser Show con Beyond y MadMapper, mezcla de contenido en vivo con Resolume Arena. +50 eventos.</div>
-          <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">Beyond</span><span class="proj-pill">MadMapper</span><span class="proj-pill">NovaLCT</span><span class="proj-pill">vMix</span></div>
-        </div>
-        <div class="project-toggle">+</div>
+      <div class="marquee-content">
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
       </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🎛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🎛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🎛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-        </div>
-        <p class="panel-add-note"/p>
-      </div></div>
     </div>
+  </section>
 
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2024</div>
-        <div>
-          <div class="project-cat">Exhibition · LED · Stand Design</div>
-          <div class="project-title-item">Egoitaliano — Salone Internazionale del Mobile, Milán</div>
-          <div class="project-desc-item">Diseño y producción de contenido audiovisual para pantallas LED en stand de feria internacional de diseño. Animaciones vectoriales 2D en loop y tipografías animadas.</div>
-          <div class="project-tools-item"><span class="proj-pill">After Effects</span><span class="proj-pill">Illustrator</span><span class="proj-pill">Cinema 4D</span></div>
+  <section id="work">
+    <p class="section-label reveal">02 / Selected</p>
+    <h2 class="section-title reveal">Work</h2>
+    <div class="projects-list">
+      <div class="project-item reveal">
+        <div class="project-header">
+          <div class="project-year">2024</div>
+          <div>
+            <div class="project-title-item">Sala Razzmatazz — Temporada 24/25</div>
+            <div class="project-tools-item">
+              <span class="proj-pill">Resolume Arena</span>
+              <span class="proj-pill">Beyond</span>
+              <span class="proj-pill">MadMapper</span>
+            </div>
+          </div>
         </div>
-        <div class="project-toggle">+</div>
       </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🏛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-          <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🏛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
-        </div>
-        <p class="panel-add-note"</p>
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2023</div>
-        <div>
-          <div class="project-cat">Large-Scale Festival · VJ · LED</div>
-          <div class="project-title-item">Fiesta de la Vendimia Godoy Cruz 2023</div>
-          <div class="project-desc-item">creación de contenido visual completo para pantallas LED de gran formato. Diseño de cada número del espectáculo multitudinario.</div>
-          <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">After Effects</span><span class="proj-pill">Illustrator</span></div>
-        </div>
-        <div class="project-toggle">+</div>
       </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/vendimia23-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/vendimia23-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/vendimia23-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/vendimia23-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"</p>
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2023</div>
-        <div>
-          <div class="project-cat">Live Show · VJ · Motion</div>
-          <div class="project-title-item">La Skandalosa Tripulación — Presentación Disco LST</div>
-          <div class="project-desc-item">VJ y creación de contenido completo para presentación de disco en vivo. Identidad visual animada 2D adaptada a cada canción del show.</div>
-          <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">After Effects</span><span class="proj-pill">Illustrator</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/lst-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/lst-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/lst-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/lst-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2022</div>
-        <div>
-          <div class="project-cat">Festival · Live Content Design</div>
-          <div class="project-title-item">Fiesta Nacional de la Cerveza — Alejo y Valentín / Batos</div>
-          <div class="project-desc-item">Creación de contenido y VJ en vivo para pantallas en festival nacional. Identidad visual animada 2D con narrativa específica por artista y por set.</div>
-          <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">After Effects</span><span class="proj-pill">Illustrator</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/cerveza-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/cerveza-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/cerveza-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/cerveza-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/cerveza-5.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/cerveza-6.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2022</div>
-        <div>
-          <div class="project-cat">Live Show · Mapping · Theater</div>
-          <div class="project-title-item">Disco "Bajando a Tierra" — Teatro Independencia</div>
-          <div class="project-desc-item">Creación de contenido, VJ y architectural mapping para presentación de disco en teatro histórico. De storyboard a puesta final en escena.</div>
-          <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">Cinema 4D</span><span class="proj-pill">After Effects</span><span class="proj-pill">MadMapper</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/teatro-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/teatro-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/teatro-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/teatro-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2022</div>
-        <div>
-          <div class="project-cat">Architectural Mapping</div>
-          <div class="project-title-item">Mapping — Iglesia San Vicente</div>
-          <div class="project-desc-item">Proyección sobre fachada histórica para apertura de "Música Clásica por los Caminos del Vino". Vitrales animados y narrativa audiovisual de gran escala.</div>
-          <div class="project-tools-item"><span class="proj-pill">MadMapper</span><span class="proj-pill">After Effects</span><span class="proj-pill">Resolume Arena</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/iglesia-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/iglesia-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/iglesia-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/iglesia-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/iglesia-5.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/iglesia-6.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-      </div></div>
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2022</div>
-        <div>
-          <div class="project-cat">Mapping · Public Space</div>
-          <div class="project-title-item">Mapping Plaza Independencia — Vendimia Capital Mendoza</div>
-          <div class="project-desc-item">Proyección sobre la fachada de la Plaza Independencia. "Vino al Vino" — fiesta departamental de la Vendimia, ciudad de Mendoza.</div>
-          <div class="project-tools-item"><span class="proj-pill">MadMapper</span><span class="proj-pill">After Effects</span><span class="proj-pill">Resolume</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/plaza-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🏛</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/plaza-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🏛</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/plaza-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🏛</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-    </div>
-
-    <div class="project-item reveal">
-      <div class="project-header" onclick="toggleProject(this)">
-        <div class="project-year">2022</div>
-        <div>
-          <div class="project-cat">Sports · LED · Brand Motion</div>
-          <div class="project-title-item">Premier Padel 2022</div>
-          <div class="project-desc-item">Creación de contenido para pantallas LED de gran formato en evento deportivo internacional. Scoreboard animado, branding en movimiento y gráficas de partido.</div>
-          <div class="project-tools-item"><span class="proj-pill">After Effects</span><span class="proj-pill">Cinema 4D</span><span class="proj-pill">Premiere</span></div>
-        </div>
-        <div class="project-toggle">+</div>
-      </div>
-      <div class="project-panel"><div class="panel-inner">
-        <div class="panel-grid">
-          <div class="panel-img"><img src="img/padel-1.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/padel-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/padel-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-          <div class="panel-img"><img src="img/padel-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
-        </div>
-        <p class="panel-add-note"
-      </div></div>
-    </div>
-
-  </div>
-</section>
-
-<section id="about">
-  <p class="section-label reveal">03 / About</p>
-  <div class="about-grid">
-    <div>
-      <p class="about-bio-text reveal">I create <em>live visual experiences</em> that blur the line between technology and art — from architectural mapping on historic buildings to LED screens at massive festivals.</p>
-      <p class="about-bio-sub reveal">Based in Barcelona. Originally from Argentina, with Italian citizenship.<br>7+ years working in motion design, VJ, architectural projection mapping and AV production.<br><br>I move equally well behind the screen designing and animating, and on-site setting up, configuring and operating live. Available for immersive installations, live events and TV productions across Europe.</p>
-    </div>
-    <div class="reveal">
-      <div class="about-stat"><div class="about-stat-num">7<span>+</span></div><div class="about-stat-label">Years in motion & live visuals</div></div>
-      <div class="about-stat"><div class="about-stat-num">50<span>+</span></div><div class="about-stat-label">Live events operated</div></div>
-      <div class="about-stat"><div class="about-stat-num">3</div><div class="about-stat-label">Countries — AR · IT · ES</div></div>
-      <div class="about-stat"><div class="about-stat-num">EU</div><div class="about-stat-label">Work authorization · Available to tour</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <p class="section-label reveal">04 / Stack</p>
-  <h2 class="section-title reveal">Tools</h2>
-  <div class="skills-grid">
-    <div class="skill-cat reveal"><div class="skill-cat-label">Live & Mapping</div><ul class="skill-list"><li>Resolume Arena</li><li>MadMapper</li><li>Beyond (Laser)</li><li>vMix / OBS Studio</li><li>ATEM / PTZ Cameras</li><li>NovaLCT</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Motion & 3D</div><ul class="skill-list"><li>After Effects</li><li>Cinema 4D</li><li>Adobe Premiere Pro</li><li>Adobe Illustrator</li><li>Adobe Photoshop</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Hardware & Stage</div><ul class="skill-list"><li>LED Screen Assembly</li><li>LED Calibration</li><li>Projector Setup</li><li>Laser Systems</li><li>Multi-Camera Direction</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Creative Process</div><ul class="skill-list"><li>Storyboard & Concept</li><li>Art Direction</li><li>2D / 3D Animation</li><li>Live Content Design</li><li>Technical Coordination</li></ul></div>
-  </div>
-</section>
-
-<section id="contact">
-  <p class="section-label reveal">05 / Contact</p>
-  <div class="avail-badge reveal"><div class="avail-dot"></div>Available for projects in Europe</div>
-  <div class="contact-big reveal"><a href="mailto:cate.amezaga@gmail.com">Let's work<br>together.</a></div>
-  <div class="contact-meta reveal">
-    <div class="contact-meta-item"><span class="contact-meta-label">Email</span><span class="contact-meta-val">cate.amezaga@gmail.com</span></div>
-    <div class="contact-meta-item"><span class="contact-meta-label">Phone</span><span class="contact-meta-val">+34 664 182 882</span></div>
-    <div class="contact-meta-item"><span class="contact-meta-label">Based in</span><span class="contact-meta-val">Barcelona, Spain</span></div>
-    <div class="contact-meta-item"><span class="contact-meta-label">Availability</span><span class="contact-meta-val">Seasonal · Touring · EU</span></div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <p>© 2026 Caterina Amézaga — Creative · Motion · Mapping ·  Live Events & TV</p>
-  <p>Barcelona, Spain &nbsp;·&nbsp; EU Work Authorization</p>
+  <div style="padding: 40px; text-align: center; border-top: 1px solid var(--border);">
+    <p style="font-family: var(--mono); font-size: 11px; color: var(--muted);">© 2026 Caterina Amézaga — Creative · Motion · Mapping</p>
+  </div>
 </footer>
 
 <script>
-  function toggleProject(header) {
-    const item = header.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.project-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+  // Sistema de aparición al hacer scroll y carga
+  const observerOptions = { threshold: 0.1 };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
 
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-  (function animateRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateRing); })();
-  document.querySelectorAll('a, .project-header, .skill-cat').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.width='60px'; ring.style.height='60px'; ring.style.borderColor='rgba(232,0,61,0.7)'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(232,0,61,0.4)'; });
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
