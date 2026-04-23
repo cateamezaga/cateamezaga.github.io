@@ -160,129 +160,51 @@
   .contact-meta-val { font-size: 15px; font-weight: 600; }
 
   footer { padding: 24px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
+ footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
-  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* --- MÓVIL (LIMPIEZA Y ESPACIOS) --- */
+  @media screen and (max-width: 768px) {
+      nav { padding: 10px 20px !important; height: 60px !important; }
+      .nav-links a { font-size: 10px !important; }
+      .hero { padding: 120px 20px 20px !important; min-height: auto !important; }
+      .hero-name { font-size: 42px !important; line-height: 1 !important; }
+      section { padding: 40px 20px !important; }
+      #work { padding-top: 20px !important; margin-top: 0px !important; }
+      .project-header { 
+          display: grid !important; 
+          grid-template-columns: 60px 1fr 30px !important; 
+          gap: 15px !important; 
+          padding: 20px 15px !important;
+      }
+      #cursor, #cursorRing, .hero-scroll { display: none !important; }
+  }
 
-@media screen and (max-width: 768px) {
-    /* 1. NAVEGACIÓN COMPACTA */
-    nav { padding: 10px 20px !important; height: 60px !important; }
-    .nav-links a { font-size: 10px !important; }
-
-    /* 2. HERO: Eliminamos el espacio sobrante abajo */
-    .hero { 
-        padding: 100px 20px 0px !important; /* Cero padding abajo */
-        margin-bottom: -20px !important; /* Subimos la siguiente sección */
-    }
-    .hero-name { font-size: 42px !important; line-height: 1 !important; }
-    .hero-tags { margin-top: 10px !important; padding-bottom: 0px !important; }
-
-    /* 3. SECCIÓN WORK: Forzamos a que suba */
-    section { 
-        padding: 30px 20px !important; /* Reducimos el aire de todas las secciones */
-    }
-
-    #work { 
-        padding-top: 0px !important; 
-        margin-top: 0px !important; 
-    }
-
-    .section-title { font-size: 32px !important; margin-bottom: 20px !important; }
-
-    /* 4. RECUADROS: Volvemos a la estructura original que tenías */
-    .project-header { 
-        display: grid !important; 
-        grid-template-columns: 60px 1fr 30px !important; 
-        gap: 15px !important; 
-        padding: 20px 15px !important;
-    }
-    .project-title-item { font-size: 17px !important; }
-
-    /* OCULTAR CURSORES */
-    #cursor, #cursorRing, .hero-scroll { display: none !important; }
-}
-/* --- ARREGLO FINAL DE ESPACIOS --- */
-    section { 
-        padding-top: 70px !important; 
-        padding-bottom: 70px !important; 
-    }
-
-    #work { 
-        padding-top: 100px !important; /* Aumentamos esto para que baje el título */
-        margin-top: 0px !important; 
-    }
-
-    .skills-grid { 
-        margin-bottom: 30px !important; 
-    }
-
-    /* El nombre CATE AMÉZAGA ahora tendrá espacio perfecto arriba */
-    .hero { 
-        padding-top: 160px !important; 
-    }
+  /* --- MARQUESINA (GRIS Y LOOP PERFECTO) --- */
   .marquee-container {
-  margin-top: 40px;
-  overflow: hidden;
-  display: flex;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 15px 0;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.02);
-}
+      margin-top: 30px;
+      overflow: hidden;
+      display: flex;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.1);
+  }
 
-.marquee-content {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--red);
-  display: inline-block;
-  animation: marquee 25s linear infinite;
-  padding-right: 50px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+  .marquee-content {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3); /* Gris que no compite */
+      display: inline-block;
+      animation: marquee 35s linear infinite;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+  }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Ajuste para móvil para que no ocupe nada de espacio */
-@media screen and (max-width: 768px) {
-.marquee-container {
-  margin-top: 30px;
-  overflow: hidden;
-  display: flex;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-  white-space: nowrap;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.marquee-content {
-  font-family: var(--mono);
-  font-size: 12px;
-  /* Color gris oscuro que no compite con el blanco ni el rojo */
-  color: rgba(255, 255, 255, 0.3); 
-  display: inline-block;
-  /* Animación más lenta y fluida */
-  animation: marquee 40s linear infinite;
-  padding-right: 0px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* Ajustado a -50% para el loop perfecto */
-}
-
-@media screen and (max-width: 768px) {
-  .marquee-container { margin-top: 15px; padding: 8px 0; }
-  .marquee-content { font-size: 10px; animation: marquee 25s linear infinite; }
-}
+  @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+  }
 </style>
 </head>
 <body>
