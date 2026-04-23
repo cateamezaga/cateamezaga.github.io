@@ -177,40 +177,44 @@
           padding: 20px 15px !important;
       }
       #cursor, #cursorRing, .hero-scroll { display: none !important; }
- .marquee-container {
-    margin-top: 40px;
-    overflow: hidden;
-    display: flex;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 18px 0;
-    white-space: nowrap;
-    background: #151515; /* Fondo oscuro sólido para que no desaparezca */
     
-    /* Si no aparece la animación, borra estas dos líneas de abajo temporalmente */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1s ease, transform 1s ease;
+/* MARQUESINA MEJORADA */
+.marquee-container {
+  margin-top: 40px;
+  overflow: hidden;
+  display: flex;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 0;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.02);
+  
+  /* Animación de entrada */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Esta clase es la que la hace aparecer */
 .marquee-container.visible {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .marquee-content {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: #FFFFFF !important; /* Blanco sólido para que se vea bien */
-    display: inline-block;
-    animation: marquee 40s linear infinite;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9) !important; /* Blanco claro profesional */
+  display: inline-block;
+  animation: marquee 40s linear infinite;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
 @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
   }
 </style>
 </head>
