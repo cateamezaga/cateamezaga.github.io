@@ -250,13 +250,38 @@
 
 /* Ajuste para móvil para que no ocupe nada de espacio */
 @media screen and (max-width: 768px) {
-  .marquee-container {
-    margin-top: 20px;
-    padding: 10px 0;
-  }
-  .marquee-content {
-    font-size: 11px;
-  }
+.marquee-container {
+  margin-top: 30px;
+  overflow: hidden;
+  display: flex;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.marquee-content {
+  font-family: var(--mono);
+  font-size: 12px;
+  /* Color gris oscuro que no compite con el blanco ni el rojo */
+  color: rgba(255, 255, 255, 0.3); 
+  display: inline-block;
+  /* Animación más lenta y fluida */
+  animation: marquee 40s linear infinite;
+  padding-right: 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Ajustado a -50% para el loop perfecto */
+}
+
+@media screen and (max-width: 768px) {
+  .marquee-container { margin-top: 15px; padding: 8px 0; }
+  .marquee-content { font-size: 10px; animation: marquee 25s linear infinite; }
 }
 </style>
 </head>
