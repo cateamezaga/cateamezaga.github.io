@@ -1,219 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cate Amézaga — Live Events & TV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --red: #E8003D; /* El rojo original de tu captura */
-    --bg: #080808;
-    --surface: #111111;
-    --border: rgba(255,255,255,0.08);
-    --text: #f0f0f0;
-    --muted: rgba(240,240,240,0.5);
-    --mono: 'DM Mono', monospace;
-    --sans: 'Syne', sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.5; overflow-x: hidden; cursor: crosshair; }
+  <title>Cate Amézaga — Técnica Audiovisual</title>
+  <meta name="description" content="Portfolio de Cate Amézaga. Técnica audiovisual especializada en live events, TV broadcast y sistemas visuales.">
 
-  /* 1. BARRA DE NAVEGACIÓN (Más notable) */
-  nav { 
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000; 
-    display: flex; align-items: center; justify-content: space-between; 
-    padding: 24px 48px; 
-    background: rgba(8, 8, 8, 0.94); /* Más opacidad */
-    backdrop-filter: blur(20px); /* Más blur */
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--red); text-decoration: none; letter-spacing: 0.1em; font-weight: 500; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.3s; }
-  .nav-links a:hover { color: var(--text); }
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cate Amézaga — Live Events & TV">
+  <meta property="og:description" content="Técnica AV especializada en eventos en vivo y televisión">
+  <meta property="og:type" content="website">
 
-  /* 2. HERO SECTION (Nombre ajustado) */
-  .hero { 
-    min-height: 100vh; display: flex; flex-direction: column; justify-content: center; 
-    padding: 120px 48px 60px; position: relative; 
-  }
-  .hero-label { font-family: var(--mono); font-size: 11px; color: var(--red); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; }
-  .hero-name { 
-    font-size: clamp(60px, 14vw, 120px); /* Tamaño balanceado */
-    font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; text-transform: uppercase;
-  }
-  .hero-name span { color: var(--red); display: block; opacity: 0.9; }
-  
-  .hero-description { margin-top: 40px; font-family: var(--mono); font-size: 13px; color: var(--muted); max-width: 500px; line-height: 1.7; }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Mono&display=swap" rel="stylesheet">
 
-  /* 3. SECCIONES GENERALES */
-  section { padding: 100px 48px; border-bottom: 1px solid var(--border); }
-  .section-label { font-family: var(--mono); font-size: 10px; color: var(--red); text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 48px; }
+  <style>
+    :root {
+      --red: #FF7F6E;
+      --bg: #111;
+      --text: #f5f5f5;
+      --muted: #888;
+      --border: rgba(255,255,255,0.08);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
 
-  /* 4. TRABAJOS (Acordeón limpio) */
-  .project-item { border-top: 1px solid var(--border); }
-  .project-header { display: grid; grid-template-columns: 100px 1fr auto; align-items: center; padding: 40px 0; cursor: pointer; transition: background 0.3s; }
-  .project-header:hover { background: rgba(255,255,255,0.02); }
-  .project-year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .project-title h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag { font-family: var(--mono); font-size: 9px; border: 1px solid var(--border); padding: 4px 10px; color: var(--muted); text-transform: uppercase; }
-  .project-toggle { font-size: 24px; color: var(--border); transition: transform 0.3s; width: 30px; text-align: center; }
-  
-  .project-item.active .project-toggle { transform: rotate(45deg); color: var(--red); }
-  .project-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-in-out; }
-  .project-item.active .project-content { max-height: 800px; padding-bottom: 40px; }
-  .project-inner-text { font-size: 14px; color: var(--muted); max-width: 700px; margin-bottom: 20px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* 5. ABOUT & STATS (Restaurado) */
-  .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; }
-  .about-text { font-size: 22px; font-weight: 500; line-height: 1.4; color: var(--text); }
-  .about-text em { font-style: normal; color: var(--red); }
-  
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .stat-box { padding: 24px; background: var(--surface); border: 1px solid var(--border); }
-  .stat-num { font-size: 32px; font-weight: 800; color: var(--red); display: block; }
-  .stat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
 
-  /* CURSOR */
-  .cursor { width: 8px; height: 8px; background: var(--red); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+    nav {
+      position: fixed;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
 
-  @media (max-width: 768px) {
-    nav { padding: 20px; }
-    .hero { padding: 120px 24px 60px; }
-    section { padding: 80px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .project-header { grid-template-columns: 1fr auto; gap: 10px; }
-    .project-year { order: -1; }
-  }
-</style>
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+
+    .hero {
+      padding: 160px 40px 80px;
+      max-width: 1000px;
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 10vw, 100px);
+      line-height: 0.9;
+    }
+
+    .hero span {
+      color: var(--red);
+    }
+
+    .hero p {
+      margin-top: 20px;
+      max-width: 600px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 80px 40px;
+      max-width: 1000px;
+    }
+
+    .project {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      cursor: pointer;
+    }
+
+    .project h3 {
+      font-size: 24px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-bottom: 10px;
+    }
+
+    .content {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.4s ease;
+    }
+
+    .project.active .content {
+      max-height: 500px;
+      margin-top: 15px;
+    }
+
+    .tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 10px;
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      font-family: var(--mono);
+      color: var(--muted);
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact a {
+      font-size: 28px;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 2px solid var(--red);
+    }
+
+    @media (max-width: 768px) {
+      nav, section, .hero {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="cursor" id="cursor"></div>
-
 <nav>
-  <a class="nav-logo" href="#">CA_PORTFOLIO</a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <a href="#">CATE.AMEZAGA</a>
+  <a href="#contact">Contacto</a>
 </nav>
 
-<main>
-  <section class="hero" id="home">
-    <p class="hero-label">01 / Técnica Audiovisual · VJ · Mapping</p>
-    <h1 class="hero-name">CATE<br><span>AMÉZAGA</span></h1>
-    <p class="hero-description">
-      Especialista en pantallas LED y sistemas visuales para eventos en vivo y televisión. Basada en Barcelona, operando en toda Europa.
-    </p>
-  </section>
+<section class="hero">
+  <h1>LIVE EVENTS<br><span>TV BROADCAST</span></h1>
+  <p>
+    Técnica audiovisual especializada en montaje, operación y diseño de sistemas visuales
+    para eventos en vivo y televisión.
+  </p>
+</section>
 
-  <section id="work">
-    <p class="section-label">02 / Selected Projects</p>
-    <div class="projects-list">
-      
-      <div class="project-item">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2026</div>
-          <div class="project-title">
-            <h3>Elenco / TV Broadcast</h3>
-            <div class="project-tags">
-              <span class="tag">LED Screens</span><span class="tag">NovaLCT</span><span class="tag">Allá Tú</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </div>
-        <div class="project-content">
-          <p class="project-inner-text">Técnica AV en producciones de televisión. Montaje y configuración de pantallas LED de gran formato y asistencia técnica en plató.</p>
-        </div>
-      </div>
-
-      <div class="project-item">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2024–25</div>
-          <div class="project-title">
-            <h3>Sala Razzmatazz</h3>
-            <div class="project-tags">
-              <span class="tag">VJ Live</span><span class="tag">Laser Show</span><span class="tag">Beyond</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </div>
-        <div class="project-content">
-          <p class="project-inner-text">Operación visual y técnica de láser para eventos internacionales en uno de los clubes más emblemáticos de Europa.</p>
-        </div>
-      </div>
-
-      </div>
-  </section>
-
-  <section id="about">
-    <p class="section-label">03 / About Me</p>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I create <em>live visual experiences</em> that blur the line between technology and art. From architectural mapping to massive LED setups, I bridge the gap between design and technical execution.</p>
-        <p style="font-size: 15px; color: var(--muted); margin-top: 24px; font-family: var(--mono);">
-          Originalmente de Argentina, con ciudadanía italiana. 7+ años de experiencia en el sector audiovisual.
-        </p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-box">
-          <span class="stat-num">7+</span>
-          <span class="stat-label">Años de experiencia</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">50+</span>
-          <span class="stat-label">Eventos operados</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">3</span>
-          <span class="stat-label">Países (AR, IT, ES)</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">EU</span>
-          <span class="stat-label">Work Authorization</span>
-        </div>
+<section>
+  <div class="project" onclick="toggle(this)">
+    <div class="meta">2026 — Hoy</div>
+    <h3>Técnica AV & Pantallas LED</h3>
+    <div class="content">
+      <p>Montaje y operación de sistemas LED en televisión.</p>
+      <div class="tags">
+        <span class="tag">TV</span>
+        <span class="tag">LED</span>
+        <span class="tag">Barcelona</span>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="contact" style="text-align: center;">
-    <p class="section-label">04 / Contact</p>
-    <h2 style="font-size: clamp(32px, 6vw, 64px); font-weight: 800; margin-bottom: 40px;">
-      <a href="mailto:cate.amezaga@gmail.com" style="color: inherit; text-decoration: none; border-bottom: 3px solid var(--red);">cate.amezaga@gmail.com</a>
-    </h2>
-    <p style="font-family: var(--mono); color: var(--muted); font-size: 13px;">Barcelona, España — Disponible para tours y proyectos.</p>
-  </section>
-</main>
+  <div class="project" onclick="toggle(this)">
+    <div class="meta">2025</div>
+    <h3>Teatro & IA</h3>
+    <div class="content">
+      <p>Escenografía digital con IA generativa.</p>
+    </div>
+  </div>
+
+  <div class="project" onclick="toggle(this)">
+    <div class="meta">2024 — 25</div>
+    <h3>Razzmatazz — Video Técnica</h3>
+    <div class="content">
+      <p>Operación visual en eventos en vivo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <a href="mailto:cate.amezaga@gmail.com">cate.amezaga@gmail.com</a>
+</section>
 
 <script>
-  // Cursor personalizado
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-
-  // Función acordeón
-  function toggleProject(header) {
-    const item = header.parentElement;
-    const isActive = item.classList.contains('active');
-    
-    // Cerrar otros si se prefiere (opcional)
-    // document.querySelectorAll('.project-item').forEach(i => i.classList.remove('active'));
-    
-    if (isActive) {
-      item.classList.remove('active');
-    } else {
-      item.classList.add('active');
-    }
+  function toggle(el) {
+    el.classList.toggle("active");
   }
 </script>
 
