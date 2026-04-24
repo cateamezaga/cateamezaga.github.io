@@ -263,6 +263,9 @@
     font-size: 11px;
   }
 }
+  .project-header, .nav-links a, .nav-logo, .contact-big a, .skill-cat {
+  cursor: pointer !important;
+}
 </style>
 </head>
 <body>
@@ -283,8 +286,8 @@
 <section class="hero" id="home">
   <div class="hero-grid-bg"></div>
   <div class="hero-noise"></div>
-  <div class="hero-counter">01 &nbsp;/&nbsp; Técnica Audiovisual &nbsp;·&nbsp; Realizadora REA &nbsp;·&nbsp; Especialista en Pantallas LED &nbsp;·&nbsp; Live Events &amp; TV</div>
-  <h1 class="hero-name"<h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
+ <div class="hero-counter">01 | HELLO :) <span style="margin: 0 20px; opacity: 0.3;">/</span> <span id="current-date"></span></div>
+ <h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
   <div class="hero-subtitle">
     <div class="hero-subtitle-line"></div>
     <p class="hero-subtitle-text">Barcelona / Europe</p>
@@ -587,6 +590,9 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const dateElement = document.getElementById('current-date');
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+dateElement.innerText = new Date().toLocaleDateString('es-ES', options);
 </script>
 </body>
 </html>
