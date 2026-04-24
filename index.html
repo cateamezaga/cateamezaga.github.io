@@ -221,17 +221,22 @@
     .hero { 
         padding-top: 160px !important; 
     }
-  .marquee-container {
-  margin-top: 40px;
+ .marquee-container {
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 60px;
   overflow: hidden;
   display: flex;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 15px 0;
+  padding: 20px 0;
   white-space: nowrap;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
 }
-
 .marquee-content {
   font-family: var(--mono);
   font-size: 13px;
