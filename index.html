@@ -6,69 +6,89 @@
 <title>Cate Amézaga — Live Events & TV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #FF7F6E;
-    --bg: #1e1e1e;
-    --surface: #1A1A1A;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(255,255,255,0.13);
+    --red: #E8003D; /* El rojo original de tu captura */
+    --bg: #080808;
+    --surface: #111111;
+    --border: rgba(255,255,255,0.08);
     --text: #f0f0f0;
-    --muted: rgba(240,240,240,0.45);
+    --muted: rgba(240,240,240,0.5);
     --mono: 'DM Mono', monospace;
     --sans: 'Syne', sans-serif;
   }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); cursor: default; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.5; overflow-x: hidden; cursor: crosshair; }
+
+  /* 1. BARRA DE NAVEGACIÓN (Más notable) */
+  nav { 
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000; 
+    display: flex; align-items: center; justify-content: space-between; 
+    padding: 24px 48px; 
+    background: rgba(8, 8, 8, 0.94); /* Más opacidad */
+    backdrop-filter: blur(20px); /* Más blur */
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--red); text-decoration: none; letter-spacing: 0.1em; font-weight: 500; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* 2. HERO SECTION (Nombre ajustado) */
+  .hero { 
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center; 
+    padding: 120px 48px 60px; position: relative; 
+  }
+  .hero-label { font-family: var(--mono); font-size: 11px; color: var(--red); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; }
+  .hero-name { 
+    font-size: clamp(60px, 14vw, 120px); /* Tamaño balanceado */
+    font-weight: 800; line-height: 0.85; letter-spacing: -0.04em; text-transform: uppercase;
+  }
+  .hero-name span { color: var(--red); display: block; opacity: 0.9; }
+  
+  .hero-description { margin-top: 40px; font-family: var(--mono); font-size: 13px; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+  /* 3. SECCIONES GENERALES */
+  section { padding: 100px 48px; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: var(--mono); font-size: 10px; color: var(--red); text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 48px; }
+
+  /* 4. TRABAJOS (Acordeón limpio) */
+  .project-item { border-top: 1px solid var(--border); }
+  .project-header { display: grid; grid-template-columns: 100px 1fr auto; align-items: center; padding: 40px 0; cursor: pointer; transition: background 0.3s; }
+  .project-header:hover { background: rgba(255,255,255,0.02); }
+  .project-year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .project-title h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 9px; border: 1px solid var(--border); padding: 4px 10px; color: var(--muted); text-transform: uppercase; }
+  .project-toggle { font-size: 24px; color: var(--border); transition: transform 0.3s; width: 30px; text-align: center; }
+  
+  .project-item.active .project-toggle { transform: rotate(45deg); color: var(--red); }
+  .project-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease-in-out; }
+  .project-item.active .project-content { max-height: 800px; padding-bottom: 40px; }
+  .project-inner-text { font-size: 14px; color: var(--muted); max-width: 700px; margin-bottom: 20px; }
+
+  /* 5. ABOUT & STATS (Restaurado) */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; }
+  .about-text { font-size: 22px; font-weight: 500; line-height: 1.4; color: var(--text); }
+  .about-text em { font-style: normal; color: var(--red); }
+  
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-box { padding: 24px; background: var(--surface); border: 1px solid var(--border); }
+  .stat-num { font-size: 32px; font-weight: 800; color: var(--red); display: block; }
+  .stat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
 
   /* CURSOR */
   .cursor { width: 8px; height: 8px; background: var(--red); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
-  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(232,0,61,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: all 0.15s ease-out; }
-
-  /* NAV */
-  nav { position: fixed; top: 0; width: 100%; z-index: 500; display: flex; justify-content: space-between; padding: 25px 48px; background: rgba(30,30,30,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--red); text-decoration: none; font-weight: bold; }
-  .nav-links { display: flex; gap: 30px; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 11px; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; }
-
-  /* HERO */
-  .hero { padding: 160px 48px 80px; }
-  .hero-label { font-family: var(--mono); font-size: 12px; color: var(--red); margin-bottom: 20px; text-transform: uppercase; }
-  .hero-name { font-size: clamp(50px, 10vw, 120px); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; }
-  .hero-name span { color: var(--red); display: block; }
-
-  /* PROYECTOS */
-  section { padding: 80px 48px; }
-  .section-label { font-family: var(--mono); font-size: 10px; color: var(--red); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 40px; }
-  
-  .project-item { border-top: 1px solid var(--border); transition: background 0.3s; }
-  .project-header { display: grid; grid-template-columns: 120px 1fr auto; align-items: center; padding: 40px 0; cursor: pointer; }
-  .project-year { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-  .project-title h3 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; margin-bottom: 10px; }
-  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag { font-family: var(--mono); font-size: 9px; border: 1px solid var(--border2); padding: 4px 10px; color: var(--muted); text-transform: uppercase; }
-  .project-toggle { font-size: 24px; color: var(--border2); transition: transform 0.3s; }
-
-  .project-item.active .project-toggle { transform: rotate(45deg); color: var(--red); }
-  .project-content { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-  .project-item.active .project-content { max-height: 1500px; padding-bottom: 50px; }
-
-  /* GRILLA DE FOTOS */
-  .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 25px; }
-  .photo-box { aspect-ratio: 16/9; background: #151515; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; color: #333; overflow: hidden; }
-  .photo-box img { width: 100%; height: 100%; object-fit: cover; }
-
-  /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .hero { padding: 140px 24px 60px; }
-    section { padding: 60px 24px; }
-    .project-header { grid-template-columns: 1fr; gap: 15px; }
+    nav { padding: 20px; }
+    .hero { padding: 120px 24px 60px; }
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .project-header { grid-template-columns: 1fr auto; gap: 10px; }
     .project-year { order: -1; }
   }
 </style>
@@ -76,170 +96,125 @@
 <body>
 
 <div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <a class="nav-logo" href="#">CATE.AMEZAGA</a>
+  <a class="nav-logo" href="#">CA_PORTFOLIO</a>
   <ul class="nav-links">
-    <li><a href="#work">Trabajos</a></li>
-    <li><a href="#contact">Contacto</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <main>
-  <section class="hero">
-    <p class="hero-label reveal">Técnica Audiovisual / Realizadora REA</p>
-    <h1 class="hero-name reveal">LIVE EVENTS<br><span>TV BROADCAST</span></h1>
+  <section class="hero" id="home">
+    <p class="hero-label">01 / Técnica Audiovisual · VJ · Mapping</p>
+    <h1 class="hero-name">CATE<br><span>AMÉZAGA</span></h1>
+    <p class="hero-description">
+      Especialista en pantallas LED y sistemas visuales para eventos en vivo y televisión. Basada en Barcelona, operando en toda Europa.
+    </p>
   </section>
 
   <section id="work">
-    <p class="section-label reveal">01 / Proyectos Seleccionados</p>
-
+    <p class="section-label">02 / Selected Projects</p>
     <div class="projects-list">
-
-      <div class="project-item reveal">
+      
+      <div class="project-item">
         <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2026 — Hoy</div>
+          <div class="project-year">2026</div>
           <div class="project-title">
-            <h3>Técnica AV & Asistencia de Pantallas</h3>
-            <div class="tags">
-              <span class="tag">Montaje Sets TV</span><span class="tag">Calibración NovaLCT</span><span class="tag">Colaboración Elenco</span><span class="tag">Barcelona</span>
+            <h3>Elenco / TV Broadcast</h3>
+            <div class="project-tags">
+              <span class="tag">LED Screens</span><span class="tag">NovaLCT</span><span class="tag">Allá Tú</span>
             </div>
           </div>
           <div class="project-toggle">+</div>
         </div>
         <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Montaje técnico de pantallas LED y asistencia técnica en sets de televisión para programas como «Allá Tú» y «Tu Cara Me Suena». Colaboraciones principales con Elenco, Novelty, Progression y Neumann & Müller.</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto Montaje TV 1</div>
-            <div class="photo-box">Foto Montaje TV 2</div>
-          </div>
+          <p class="project-inner-text">Técnica AV en producciones de televisión. Montaje y configuración de pantallas LED de gran formato y asistencia técnica en plató.</p>
         </div>
       </div>
 
-      <div class="project-item reveal">
+      <div class="project-item">
         <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2025</div>
+          <div class="project-year">2024–25</div>
           <div class="project-title">
-            <h3>La Casa de Al Lado — Teatro & IA</h3>
-            <div class="tags">
-              <span class="tag">IA Generativa Visual</span><span class="tag">After Effects</span><span class="tag">Mendoza</span>
+            <h3>Sala Razzmatazz</h3>
+            <div class="project-tags">
+              <span class="tag">VJ Live</span><span class="tag">Laser Show</span><span class="tag">Beyond</span>
             </div>
           </div>
           <div class="project-toggle">+</div>
         </div>
         <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Desarrollo de escenografía digital y narrativa visual mediante inteligencia artificial para obra teatral (Junio-Julio 2025).</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto Escena Teatro</div>
-          </div>
+          <p class="project-inner-text">Operación visual y técnica de láser para eventos internacionales en uno de los clubes más emblemáticos de Europa.</p>
         </div>
       </div>
 
-      <div class="project-item reveal">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2024 — 25</div>
-          <div class="project-title">
-            <h3>Técnica de Vídeo — Sala Razzmatazz</h3>
-            <div class="tags">
-              <span class="tag">Live Events</span><span class="tag">VJ Live</span><span class="tag">Laser Show (Beyond)</span><span class="tag">Setup AV</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
+      </div>
+  </section>
+
+  <section id="about">
+    <p class="section-label">03 / About Me</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I create <em>live visual experiences</em> that blur the line between technology and art. From architectural mapping to massive LED setups, I bridge the gap between design and technical execution.</p>
+        <p style="font-size: 15px; color: var(--muted); margin-top: 24px; font-family: var(--mono);">
+          Originalmente de Argentina, con ciudadanía italiana. 7+ años de experiencia en el sector audiovisual.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-num">7+</span>
+          <span class="stat-label">Años de experiencia</span>
         </div>
-        <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Gestión técnica de vídeo hasta noviembre de 2025. Montaje de proyectores, operación de sistemas láser y realización visual en directo para eventos de gran formato.</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto Cabina VJ</div>
-            <div class="photo-box">Foto Show Láser</div>
-          </div>
+        <div class="stat-box">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Eventos operados</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Países (AR, IT, ES)</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">EU</span>
+          <span class="stat-label">Work Authorization</span>
         </div>
       </div>
-
-      <div class="project-item reveal">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2024</div>
-          <div class="project-title">
-            <h3>Egoitaliano — Milán</h3>
-            <div class="tags">
-              <span class="tag">Motion Design</span><span class="tag">Mockups Técnicos</span><span class="tag">Salone del Mobile</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </div>
-        <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Creación de 15 animaciones originales desde cero para video walls en feria internacional. Trabajo directo con departamento de diseño y comunicación.</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto Animación 1</div>
-            <div class="photo-box">Foto Stand Milán</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-item reveal">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2022 — 23</div>
-          <div class="project-title">
-            <h3>Architectural Mapping</h3>
-            <div class="tags">
-              <span class="tag">MadMapper</span><span class="tag">Proyección Gran Formato</span><span class="tag">Patrimonio Histórico</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </div>
-        <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Intervenciones visuales en la Iglesia San Vicente y el Teatro Independencia. Alineación de superficies y diseño de contenido adaptado a la arquitectura.</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto Iglesia San Vicente</div>
-            <div class="photo-box">Foto Teatro Independencia</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-item reveal">
-        <div class="project-header" onclick="toggleProject(this)">
-          <div class="project-year">2023</div>
-          <div class="project-title">
-            <h3>QR Nueva Economía — Diseño de Pantallas</h3>
-            <div class="tags">
-              <span class="tag">TV Graphics</span><span class="tag">LED Content</span><span class="tag">Broadcast Identity</span>
-            </div>
-          </div>
-          <div class="project-toggle">+</div>
-        </div>
-        <div class="project-content">
-          <p style="color: var(--muted); font-size: 14px; max-width: 700px;">Diseño estético y desarrollo de contenidos para pantallas LED en entorno televisivo.</p>
-          <div class="photo-grid">
-            <div class="photo-box">Foto QR Pantallas</div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <section id="contact" style="text-align: center;">
-    <p class="section-label reveal">02 / Contacto</p>
-    <a href="mailto:cate.amezaga@gmail.com" class="reveal" style="font-size: clamp(30px, 5vw, 60px); color: var(--text); text-decoration: none; font-weight: 800; border-bottom: 2px solid var(--red);">cate.amezaga@gmail.com</a>
+    <p class="section-label">04 / Contact</p>
+    <h2 style="font-size: clamp(32px, 6vw, 64px); font-weight: 800; margin-bottom: 40px;">
+      <a href="mailto:cate.amezaga@gmail.com" style="color: inherit; text-decoration: none; border-bottom: 3px solid var(--red);">cate.amezaga@gmail.com</a>
+    </h2>
+    <p style="font-family: var(--mono); color: var(--muted); font-size: 13px;">Barcelona, España — Disponible para tours y proyectos.</p>
   </section>
 </main>
 
 <script>
+  // Cursor personalizado
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+
+  // Función acordeón
   function toggleProject(header) {
     const item = header.parentElement;
-    item.classList.toggle('active');
+    const isActive = item.classList.contains('active');
+    
+    // Cerrar otros si se prefiere (opcional)
+    // document.querySelectorAll('.project-item').forEach(i => i.classList.remove('active'));
+    
+    if (isActive) {
+      item.classList.remove('active');
+    } else {
+      item.classList.add('active');
+    }
   }
-
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-  (function anim() { rx += (mx-rx)*0.15; ry += (my-ry)*0.15; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(anim); })();
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
