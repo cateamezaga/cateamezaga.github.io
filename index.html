@@ -1,200 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cate Amézaga — Live Events & TV</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+  :root { --red: #FF7F6E; --bg: #1e1e1e; --text: #f0f0f0; --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif; }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; cursor: none; }
 
-  <title>Cate Amézaga — Técnica Audiovisual</title>
-  <meta name="description" content="Portfolio de Cate Amézaga. Técnica audiovisual especializada en live events, TV broadcast y sistemas visuales.">
+  /* CURSOR */
+  .cursor { width: 8px; height: 8px; background: var(--red); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+  .cursor-ring { width: 36px; height: 36px; border: 1px solid rgba(232,0,61,0.4); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); }
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Cate Amézaga — Live Events & TV">
-  <meta property="og:description" content="Técnica AV especializada en eventos en vivo y televisión">
-  <meta property="og:type" content="website">
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; z-index: 500; display: flex; justify-content: space-between; padding: 25px 48px; background: rgba(30,30,30,0.9); backdrop-filter: blur(10px); }
+  .nav-logo { font-family: var(--mono); font-size: 12px; color: var(--red); text-decoration: none; letter-spacing: 0.1em; }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Mono&display=swap" rel="stylesheet">
+  /* HERO */
+  .hero { padding: 150px 48px 100px; }
+  .hero-counter { font-family: var(--mono); font-size: 11px; color: var(--red); margin-bottom: 20px; }
+  .hero-name { font-size: clamp(50px, 12vw, 130px); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 40px; text-transform: uppercase; }
+  .hero-name span { color: var(--red); display: block; }
+  
+  /* MARQUESINA - UNA SOLA LÍNEA BLANCA */
+  .marquee-wrapper {
+    width: 100vw;
+    margin-left: -48px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+    /* Animación de entrada al cargar */
+    animation: slideUp 1s ease-out forwards;
+  }
 
-  <style>
-    :root {
-      --red: #FF7F6E;
-      --bg: #111;
-      --text: #f5f5f5;
-      --muted: #888;
-      --border: rgba(255,255,255,0.08);
-      --mono: 'DM Mono', monospace;
-      --sans: 'Syne', sans-serif;
-    }
+  .marquee-container {
+    display: flex;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  .marquee-content {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: #FFFFFF !important;
+    white-space: nowrap; /* ESTO ES LO QUE EVITA QUE SE AMONTONE */
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding-right: 80px;
+  }
 
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 
-    nav {
-      position: fixed;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 12px;
-      font-family: var(--mono);
-    }
-
-    .hero {
-      padding: 160px 40px 80px;
-      max-width: 1000px;
-    }
-
-    .hero h1 {
-      font-size: clamp(50px, 10vw, 100px);
-      line-height: 0.9;
-    }
-
-    .hero span {
-      color: var(--red);
-    }
-
-    .hero p {
-      margin-top: 20px;
-      max-width: 600px;
-      color: var(--muted);
-    }
-
-    section {
-      padding: 80px 40px;
-      max-width: 1000px;
-    }
-
-    .project {
-      border-top: 1px solid var(--border);
-      padding: 30px 0;
-      cursor: pointer;
-    }
-
-    .project h3 {
-      font-size: 24px;
-    }
-
-    .meta {
-      font-size: 12px;
-      color: var(--muted);
-      font-family: var(--mono);
-      margin-bottom: 10px;
-    }
-
-    .content {
-      max-height: 0;
-      overflow: hidden;
-      transition: 0.4s ease;
-    }
-
-    .project.active .content {
-      max-height: 500px;
-      margin-top: 15px;
-    }
-
-    .tags {
-      margin-top: 10px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tag {
-      font-size: 10px;
-      border: 1px solid var(--border);
-      padding: 4px 8px;
-      font-family: var(--mono);
-      color: var(--muted);
-    }
-
-    .contact {
-      text-align: center;
-    }
-
-    .contact a {
-      font-size: 28px;
-      text-decoration: none;
-      color: var(--text);
-      border-bottom: 2px solid var(--red);
-    }
-
-    @media (max-width: 768px) {
-      nav, section, .hero {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-    }
-  </style>
+  @media (max-width: 768px) {
+    .hero { padding: 120px 24px; }
+    .hero-name { font-size: 60px; }
+  }
+</style>
 </head>
-
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <nav>
-  <a href="#">CATE.AMEZAGA</a>
-  <a href="#contact">Contacto</a>
+  <a class="nav-logo" href="#">CA_PORTFOLIO</a>
 </nav>
 
-<section class="hero">
-  <h1>LIVE EVENTS<br><span>TV BROADCAST</span></h1>
-  <p>
-    Técnica audiovisual especializada en montaje, operación y diseño de sistemas visuales
-    para eventos en vivo y televisión.
-  </p>
-</section>
-
-<section>
-  <div class="project" onclick="toggle(this)">
-    <div class="meta">2026 — Hoy</div>
-    <h3>Técnica AV & Pantallas LED</h3>
-    <div class="content">
-      <p>Montaje y operación de sistemas LED en televisión.</p>
-      <div class="tags">
-        <span class="tag">TV</span>
-        <span class="tag">LED</span>
-        <span class="tag">Barcelona</span>
+<main>
+  <section class="hero">
+    <div class="hero-counter">01 / TÉCNICA AUDIOVISUAL · REALIZADORA REA · ESPECIALISTA LED</div>
+    <h1 class="hero-name">CATE<span>AMÉZAGA</span></h1>
+    
+    <div class="marquee-wrapper">
+      <div class="marquee-container">
+        <div class="marquee-content">
+          3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        </div>
+        <div class="marquee-content">
+          3D MAPPING · AV TECHNICIAN · LED SCREENS · MOTION DESIGN · VJ LIVE SHOW & TV · AFTER EFFECTS · IMMERSIVE EXPERIENCES · RESOLUME ARENA ·&nbsp;
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="project" onclick="toggle(this)">
-    <div class="meta">2025</div>
-    <h3>Teatro & IA</h3>
-    <div class="content">
-      <p>Escenografía digital con IA generativa.</p>
-    </div>
-  </div>
-
-  <div class="project" onclick="toggle(this)">
-    <div class="meta">2024 — 25</div>
-    <h3>Razzmatazz — Video Técnica</h3>
-    <div class="content">
-      <p>Operación visual en eventos en vivo.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <a href="mailto:cate.amezaga@gmail.com">cate.amezaga@gmail.com</a>
-</section>
+  </section>
+</main>
 
 <script>
-  function toggle(el) {
-    el.classList.toggle("active");
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+
+  function anim() {
+    rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(anim);
   }
+  anim();
 </script>
 
 </body>
