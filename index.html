@@ -239,13 +239,13 @@
 }
 .marquee-content {
   font-family: var(--mono);
-  font-size: 13px;
-  color: var(--red);
+  font-size: 14px;
+  color: #FFFFFF; /* Color blanco como pediste */
   display: inline-block;
-  animation: marquee 25s linear infinite;
-  padding-right: 50px;
+  animation: marquee 35s linear infinite;
+  padding-right: 0px; /* Eliminamos el padding para evitar el error del 3D */
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
 }
 
 @keyframes marquee {
