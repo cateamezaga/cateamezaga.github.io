@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,52 +24,35 @@
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; cursor: default; overflow-x: hidden; }
 
-.cursor {
-  width: 8px;
-  height: 8px;
-  background: var(--red);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-}
+  /* === CURSOR === */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--red);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(255,127,110,0.4);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9997;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+  }
 
-.cursor-label {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.75);
-  color: white;
-  font-size: 12px;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease, opacity 0.2s;
-  z-index: 9998;
-  backdrop-filter: blur(6px);
-}
-.cursor-label span {
-  pointer-events: none;
-}
-.cursor-label.active {
-  transform: translate(-50%, -50%) scale(1);
-}
- nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  /* === NAV === */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(8,8,8,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--red); text-decoration: none; }
   .nav-links { display: flex; gap: 40px; list-style: none; }
-  .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; cursor: pointer; }
   .nav-links a:hover { color: var(--text); }
 
-  .hero { min-height: auto; display: flex; flex-direction: column; justify-content:flex-start; padding:140px 48px 60px; position: relative; overflow: hidden; }
+  /* === HERO === */
+  .hero { min-height: auto; display: flex; flex-direction: column; justify-content: flex-start; padding: 160px 48px 60px; position: relative; overflow: hidden; }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(232,0,61,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,61,0.04) 1px, transparent 1px); background-size: 80px 80px; animation: gridDrift 20s linear infinite; }
   @keyframes gridDrift { from { transform: translateY(0); } to { transform: translateY(80px); } }
   .hero-noise { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(232,0,61,0.06) 0%, transparent 70%); }
@@ -86,33 +69,53 @@
   .hero-scroll::after { content: ''; width: 1px; height: 60px; background: linear-gradient(to bottom, var(--red), transparent); display: block; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
+  /* === MARQUEE === */
+  .marquee-container {
+    width: 100vw;
+    position: relative;
+    left: 50%; right: 50%;
+    margin-left: -50vw; margin-right: -50vw;
+    margin-top: 60px;
+    overflow: hidden;
+    display: flex;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.03);
+  }
+  .marquee-content {
+    font-family: var(--mono); font-size: 14px; color: #fff;
+    display: inline-block;
+    animation: marquee 35s linear infinite;
+    text-transform: uppercase; letter-spacing: 0.15em;
+  }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+  /* === SECTIONS === */
   section { padding: 80px 48px; }
   .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; color: var(--red); text-transform: uppercase; margin-bottom: 16px; }
   .section-title { font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1; letter-spacing: -0.02em; margin-bottom: 40px; }
 
+  /* === WORK === */
   #work { background: var(--bg); }
   .projects-list { display: flex; flex-direction: column; gap: 2px; }
-
-  .project-item { border: 1px solid var(--border); background: var(--surface); overflow: hidden; transition: border-color 0.2s; }
-  .project-item:hover { border-color: var(--border2); }
+  .project-item { border: 1px solid var(--border); background: var(--surface); overflow: hidden; transition: border-color 0.2s, box-shadow 0.3s; }
+  .project-item:hover { border-color: var(--border2); box-shadow: 0 0 0 1px rgba(255,127,110,0.1), 0 4px 24px rgba(0,0,0,0.3); }
   .project-item.open { border-color: var(--red); }
-
   .project-header { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 32px; padding: 28px 32px; cursor: pointer; position: relative; transition: background 0.2s; }
   .project-header::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--red); transform: scaleY(0); transform-origin: bottom; transition: transform 0.25s; }
   .project-item.open .project-header::before, .project-header:hover::before { transform: scaleY(1); }
   .project-header:hover { background: var(--surface2); }
-
   .project-year { font-family: var(--mono); font-size: 12px; color: var(--red); letter-spacing: 0.05em; }
   .project-cat { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
   .project-title-item { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
   .project-desc-item { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.5; max-width: 560px; }
   .project-tools-item { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
   .proj-pill { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; border: 1px solid var(--border2); padding: 3px 10px; color: var(--muted); text-transform: uppercase; }
-
   .project-toggle { font-family: var(--mono); font-size: 22px; color: var(--border2); transition: color 0.2s, transform 0.35s; line-height: 1; user-select: none; min-width: 28px; text-align: center; font-weight: 300; }
   .project-item.open .project-toggle { transform: rotate(45deg); color: var(--red); }
   .project-header:hover .project-toggle { color: var(--muted); }
-
   .project-panel { max-height: 0; overflow: hidden; transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1); }
   .project-item.open .project-panel { max-height: 1200px; border-top: 1px solid var(--border); }
   .panel-inner { padding: 32px; }
@@ -126,21 +129,25 @@
   .panel-add-note { margin-top: 18px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; border-top: 1px solid var(--border); padding-top: 14px; line-height: 1.6; }
   .panel-add-note span { color: var(--red); }
 
+  /* === ABOUT === */
   #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
   .about-bio-text { font-size: 22px; font-weight: 500; line-height: 1.5; letter-spacing: -0.01em; }
   .about-bio-text em { font-style: normal; color: var(--red); }
   .about-bio-sub { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 24px; line-height: 1.7; }
-  .about-stat { padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .about-stat { padding: 24px 0; border-bottom: 1px solid var(--border); transition: padding-left 0.2s; }
   .about-stat:first-child { border-top: 1px solid var(--border); }
-  .about-stat-num { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .about-stat:hover { padding-left: 8px; }
+  .about-stat-num { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; transition: color 0.3s; }
   .about-stat-num span { color: var(--red); }
+  .about-stat:hover .about-stat-num { color: var(--red); }
   .about-stat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
 
+  /* === SKILLS === */
   #skills { background: var(--bg); }
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; }
-  .skill-cat { background: var(--surface); border: 1px solid var(--border); padding: 32px; transition: background 0.2s; }
-  .skill-cat:hover { background: var(--surface2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-bottom: 30px; }
+  .skill-cat { background: var(--surface); border: 1px solid var(--border); padding: 32px; transition: background 0.2s, transform 0.2s; cursor: pointer; }
+  .skill-cat:hover { background: var(--surface2); transform: translateY(-2px); }
   .skill-cat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--red); text-transform: uppercase; margin-bottom: 20px; }
   .skill-list { list-style: none; }
   .skill-list li { font-size: 15px; font-weight: 500; padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--muted); transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
@@ -148,124 +155,86 @@
   .skill-list li:last-child { border-bottom: none; }
   .skill-list li:hover { color: var(--text); }
 
+  /* === TESTIMONIALES === */
+  #testimonials { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .testimonials-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 48px; }
+  .testi-card { border: 1px solid var(--border); background: var(--bg); padding: 32px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; transition: border-color 0.2s, box-shadow 0.3s; }
+  .testi-card:hover { border-color: var(--border2); box-shadow: 0 0 0 1px rgba(255,127,110,0.08); }
+  .testi-project { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
+  .testi-quote { font-size: 16px; line-height: 1.7; font-style: italic; margin-bottom: 20px; color: var(--text); }
+  .testi-name { font-size: 14px; font-weight: 700; }
+  .testi-role { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .testi-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; }
+  .testi-empty { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; padding: 32px 0; }
+
+  .testi-form-wrap { border: 1px solid var(--border2); padding: 40px; background: var(--bg); max-width: 640px; }
+  .testi-form-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; color: var(--red); text-transform: uppercase; margin-bottom: 24px; display: block; }
+  .testi-form-title { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 32px; line-height: 1.2; }
+  .testi-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .testi-form-field { margin-bottom: 16px; }
+  .testi-field-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 8px; }
+  .testi-input { width: 100%; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--sans); font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; }
+  .testi-input:focus { border-color: var(--red); }
+  .testi-textarea { width: 100%; background: var(--surface); border: 1px solid var(--border2); color: var(--text); font-family: var(--sans); font-size: 14px; padding: 12px 16px; outline: none; resize: vertical; transition: border-color 0.2s; min-height: 120px; }
+  .testi-textarea:focus { border-color: var(--red); }
+  .testi-submit { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border: 1px solid var(--red); background: transparent; color: var(--red); padding: 14px 32px; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .testi-submit:hover { background: var(--red); color: #1e1e1e; }
+  .testi-status { font-family: var(--mono); font-size: 11px; margin-top: 14px; min-height: 20px; letter-spacing: 0.05em; }
+
+  /* === CONTACT === */
   #contact { background: var(--surface); border-top: 1px solid var(--border); text-align: center; }
-  .avail-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--border2); padding: 8px 20px; margin-bottom: 40px; text-transform: uppercase; }
+  .avail-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--border2); padding: 8px 20px; margin-bottom: 40px; text-transform: uppercase; animation: badgePulse 3s ease-in-out infinite; }
   .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  @keyframes badgePulse { 0%,100% { border-color: rgba(255,255,255,0.13); } 50% { border-color: rgba(255,127,110,0.5); } }
   .contact-big { font-size: clamp(40px,8vw,100px); font-weight: 800; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 48px; }
   .contact-big a { color: var(--text); text-decoration: none; border-bottom: 3px solid var(--red); transition: color 0.2s; }
   .contact-big a:hover { color: var(--red); }
   .contact-meta { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 48px; }
+  .contact-meta-item { text-align: center; }
   .contact-meta-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 4px; }
   .contact-meta-val { font-size: 15px; font-weight: 600; }
 
+  /* === FOOTER === */
   footer { padding: 24px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
   footer p { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; }
 
+  /* === REVEAL ANIMATION === */
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  .projects-list .reveal:nth-child(1) { transition-delay: 0ms; }
+  .projects-list .reveal:nth-child(2) { transition-delay: 60ms; }
+  .projects-list .reveal:nth-child(3) { transition-delay: 120ms; }
+  .projects-list .reveal:nth-child(4) { transition-delay: 180ms; }
+  .projects-list .reveal:nth-child(5) { transition-delay: 240ms; }
+  .projects-list .reveal:nth-child(6) { transition-delay: 300ms; }
+  .projects-list .reveal:nth-child(7) { transition-delay: 360ms; }
+  .projects-list .reveal:nth-child(8) { transition-delay: 420ms; }
 
-@media screen and (max-width: 768px) {
-    /* 1. NAVEGACIÓN COMPACTA */
-    nav { padding: 10px 20px !important; height: 60px !important; }
-    .nav-links a { font-size: 10px !important; }
-
-    /* 2. HERO: Eliminamos el espacio sobrante abajo */
-    .hero { 
-        padding: 100px 20px 0px !important; /* Cero padding abajo */
-        margin-bottom: -20px !important; /* Subimos la siguiente sección */
-    }
-    .hero-name { font-size: 42px !important; line-height: 1 !important; }
-    .hero-tags { margin-top: 10px !important; padding-bottom: 0px !important; }
-
-    /* 3. SECCIÓN WORK: Forzamos a que suba */
-    section { 
-        padding: 30px 20px !important; /* Reducimos el aire de todas las secciones */
-    }
-
-    #work { 
-        padding-top: 0px !important; 
-        margin-top: 0px !important; 
-    }
-
-    .section-title { font-size: 32px !important; margin-bottom: 20px !important; }
-
-    /* 4. RECUADROS: Volvemos a la estructura original que tenías */
-    .project-header { 
-        display: grid !important; 
-        grid-template-columns: 60px 1fr 30px !important; 
-        gap: 15px !important; 
-        padding: 20px 15px !important;
-    }
-    .project-title-item { font-size: 17px !important; }
-
-    /* OCULTAR CURSORES */
-    #cursor, #cursorRing, .hero-scroll { display: none !important; }
-}
-/* --- ARREGLO FINAL DE ESPACIOS --- */
-    section { 
-        padding-top: 70px !important; 
-        padding-bottom: 70px !important; 
-    }
-
-    #work { 
-        padding-top: 100px !important; /* Aumentamos esto para que baje el título */
-        margin-top: 0px !important; 
-    }
-
-    .skills-grid { 
-        margin-bottom: 30px !important; 
-    }
-
-    /* El nombre CATE AMÉZAGA ahora tendrá espacio perfecto arriba */
-    .hero { 
-        padding-top: 160px !important; 
-    }
- .marquee-container {
-  width: 100vw; /* Ocupa todo el ancho de la ventana */
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: 60px;
-  overflow: hidden;
-  display: flex;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.03);
-}
-.marquee-content {
-  font-family: var(--mono);
-  font-size: 14px;
-  color: #FFFFFF; /* Color blanco como pediste */
-  display: inline-block;
-  animation: marquee 35s linear infinite;
-  padding-right: 0px; /* Eliminamos el padding para evitar el error del 3D */
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Ajuste para móvil para que no ocupe nada de espacio */
-@media screen and (max-width: 768px) {
-  .marquee-container {
-    margin-top: 20px;
-    padding: 10px 0;
+  /* === MOBILE === */
+  @media screen and (max-width: 768px) {
+    nav { padding: 10px 20px; height: 60px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 10px; }
+    .hero { padding: 100px 20px 0px; margin-bottom: -20px; }
+    .hero-name { font-size: 42px; line-height: 1; }
+    .hero-tags { margin-top: 10px; }
+    section { padding: 40px 20px; }
+    #work { padding-top: 40px; }
+    .section-title { font-size: 32px; margin-bottom: 20px; }
+    .project-header { grid-template-columns: 60px 1fr 30px; gap: 15px; padding: 20px 15px; }
+    .project-title-item { font-size: 17px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .testi-form-row { grid-template-columns: 1fr; }
+    .testi-card { grid-template-columns: 1fr; }
+    .contact-meta { gap: 28px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .marquee-container { margin-top: 20px; padding: 10px 0; }
+    .marquee-content { font-size: 11px; }
+    #cursor, #cursorRing, .hero-scroll { display: none; }
   }
-  .marquee-content {
-    font-size: 11px;
-  }
-}
-  .project-header, .nav-links a, .nav-logo, .contact-big a, .skill-cat {
-  cursor: pointer !important;
-}
+
+  .project-header, .nav-links a, .nav-logo, .contact-big a, .skill-cat { cursor: pointer; }
 </style>
 </head>
 <body>
@@ -279,37 +248,49 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<!-- ============ HERO ============ -->
 <section class="hero" id="home">
   <div class="hero-grid-bg"></div>
   <div class="hero-noise"></div>
- <div class="hero-counter">01 | HELLO :) <span style="margin: 0 20px; opacity: 0.3;">/</span> <span id="current-date"></span></div>
- <h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
+  <div class="hero-counter">01 | HELLO :) <span style="margin: 0 20px; opacity: 0.3;">/</span> <span id="current-date"></span></div>
+  <h1 class="hero-name">CATE<br><span class="line2">AMÉZAGA</span></h1>
   <div class="hero-subtitle">
     <div class="hero-subtitle-line"></div>
     <p class="hero-subtitle-text">Barcelona / Europe</p>
   </div>
- <div class="marquee-container">
-  <div class="marquee-content">
-    3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;
+  <div class="hero-tags">
+    <span class="hero-tag">3D Mapping</span>
+    <span class="hero-tag">VJ Live</span>
+    <span class="hero-tag">Laser Shows</span>
+    <span class="hero-tag">LED Screens</span>
+    <span class="hero-tag">Motion Design</span>
+    <span class="hero-tag">TV Production</span>
   </div>
-  <div class="marquee-content">
-    3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;
+  <div class="marquee-container">
+    <div class="marquee-content">3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;</div>
+    <div class="marquee-content">3D MAPPING · VJ LIVE · LASER SHOWS · LED SCREENS · MOTION DESIGN · CINEMA 4D · RESOLUME ARENA · MADMAPPER · AFTER EFFECTS · IMMERSIVE EXPERIENCES ·&nbsp;</div>
   </div>
+  <div class="hero-scroll">SCROLL</div>
 </section>
+
+<!-- ============ WORK ============ -->
 <section id="work">
-  <p class="section-label reveal">02 / Selected</p> <h2 class="section-title reveal">Work</h2>      <div class="projects-list">
+  <p class="section-label reveal">02 / Selected</p>
+  <h2 class="section-title reveal">Work</h2>
+  <div class="projects-list">
 
     <div class="project-item reveal">
       <div class="project-header" onclick="toggleProject(this)">
         <div class="project-year">2026</div>
         <div>
           <div class="project-cat">Television · LED · Stage</div>
-          <div class="project-title-item">Alla Tú / Tu Cara Me suena — Elenco</div>
-          <div class="project-desc-item">Técnica AV en producciones de televisión española. Montaje y configuración de pantallas LED con NovaLCT, Asistencia tècnica en programas en vivo.</div>
+          <div class="project-title-item">Alla Tú / Tu Cara Me Suena — Elenco</div>
+          <div class="project-desc-item">Técnica AV en producciones de televisión española. Montaje y configuración de pantallas LED con NovaLCT, asistencia técnica en programas en vivo.</div>
           <div class="project-tools-item"><span class="proj-pill">NovaLCT</span><span class="proj-pill">Resolume Arena</span><span class="proj-pill">LED Assembly</span></div>
         </div>
         <div class="project-toggle">+</div>
@@ -341,7 +322,7 @@
           <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🎛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
           <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🎛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
         </div>
-        <p class="panel-add-note"/p>
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -361,7 +342,7 @@
           <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🏛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
           <div class="panel-img"><div class="panel-placeholder"><div class="panel-placeholder-icon">🏛</div><div class="panel-placeholder-text">Foto próximamente</div></div></div>
         </div>
-        <p class="panel-add-note"</p>
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -371,7 +352,7 @@
         <div>
           <div class="project-cat">Large-Scale Festival · VJ · LED</div>
           <div class="project-title-item">Fiesta de la Vendimia Godoy Cruz 2023</div>
-          <div class="project-desc-item">creación de contenido visual completo para pantallas LED de gran formato. Diseño de cada número del espectáculo multitudinario.</div>
+          <div class="project-desc-item">Creación de contenido visual completo para pantallas LED de gran formato. Diseño de cada número del espectáculo multitudinario.</div>
           <div class="project-tools-item"><span class="proj-pill">Resolume Arena</span><span class="proj-pill">After Effects</span><span class="proj-pill">Illustrator</span></div>
         </div>
         <div class="project-toggle">+</div>
@@ -383,7 +364,7 @@
           <div class="panel-img"><img src="img/vendimia23-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/vendimia23-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍇</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"</p>
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -405,7 +386,7 @@
           <div class="panel-img"><img src="img/lst-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/lst-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎸</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -429,7 +410,7 @@
           <div class="panel-img"><img src="img/cerveza-5.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/cerveza-6.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🍺</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -451,7 +432,7 @@
           <div class="panel-img"><img src="img/teatro-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/teatro-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎭</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -475,7 +456,7 @@
           <div class="panel-img"><img src="img/iglesia-5.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/iglesia-6.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>⛪</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
@@ -496,7 +477,8 @@
           <div class="panel-img"><img src="img/plaza-2.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🏛</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/plaza-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🏛</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
+      </div></div>
     </div>
 
     <div class="project-item reveal">
@@ -517,13 +499,14 @@
           <div class="panel-img"><img src="img/padel-3.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
           <div class="panel-img"><img src="img/padel-4.jpg" alt="" onerror="this.parentElement.innerHTML='<div class=panel-placeholder><div class=panel-placeholder-icon>🎾</div><div class=panel-placeholder-text>Subí la foto</div></div>'"></div>
         </div>
-        <p class="panel-add-note"
+        <p class="panel-add-note"></p>
       </div></div>
     </div>
 
   </div>
 </section>
 
+<!-- ============ ABOUT ============ -->
 <section id="about">
   <p class="section-label reveal">03 / About</p>
   <div class="about-grid">
@@ -540,20 +523,83 @@
   </div>
 </section>
 
+<!-- ============ SKILLS ============ -->
 <section id="skills">
   <p class="section-label reveal">04 / Stack</p>
   <h2 class="section-title reveal">Tools</h2>
   <div class="skills-grid">
-    <div class="skill-cat reveal"><div class="skill-cat-label">Live & Mapping</div><ul class="skill-list"><li>Resolume Arena</li><li>MadMapper</li><li>Beyond (Laser)</li><li>vMix / OBS Studio</li><li>ATEM / PTZ Cameras</li><li>NovaLCT</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Motion & 3D</div><ul class="skill-list"><li>After Effects</li><li>Cinema 4D</li><li>Adobe Premiere Pro</li><li>Adobe Illustrator</li><li>Adobe Photoshop</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Hardware & Stage</div><ul class="skill-list"><li>LED Screen Assembly</li><li>LED Calibration</li><li>Projector Setup</li><li>Laser Systems</li><li>Multi-Camera Direction</li></ul></div>
-    <div class="skill-cat reveal"><div class="skill-cat-label">Creative Process</div><ul class="skill-list"><li>Storyboard & Concept</li><li>Art Direction</li><li>2D / 3D Animation</li><li>Live Content Design</li><li>Technical Coordination</li></ul></div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label">Live & Mapping</div>
+      <ul class="skill-list">
+        <li>Resolume Arena</li><li>MadMapper</li><li>Beyond (Laser)</li>
+        <li>vMix / OBS Studio</li><li>ATEM / PTZ Cameras</li><li>NovaLCT</li>
+      </ul>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label">Motion & 3D</div>
+      <ul class="skill-list">
+        <li>After Effects</li><li>Cinema 4D</li><li>Adobe Premiere Pro</li>
+        <li>Adobe Illustrator</li><li>Adobe Photoshop</li>
+      </ul>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label">Hardware & Stage</div>
+      <ul class="skill-list">
+        <li>LED Screen Assembly</li><li>LED Calibration</li><li>Projector Setup</li>
+        <li>Laser Systems</li><li>Multi-Camera Direction</li>
+      </ul>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label">Creative Process</div>
+      <ul class="skill-list">
+        <li>Storyboard & Concept</li><li>Art Direction</li><li>2D / 3D Animation</li>
+        <li>Live Content Design</li><li>Technical Coordination</li>
+      </ul>
+    </div>
   </div>
 </section>
 
+<!-- ============ TESTIMONIALES ============ -->
+<section id="testimonials">
+  <p class="section-label reveal">05 / Recomendaciones</p>
+  <h2 class="section-title reveal">Lo que dicen</h2>
+
+  <div class="testimonials-list reveal" id="testimonials-list"></div>
+
+  <div class="testi-form-wrap reveal">
+    <span class="testi-form-label">¿Trabajaste conmigo?</span>
+    <div class="testi-form-title">Dejá tu recomendación</div>
+
+    <div class="testi-form-row">
+      <div>
+        <label class="testi-field-label">Nombre *</label>
+        <input class="testi-input" id="t-name" type="text" placeholder="Tu nombre">
+      </div>
+      <div>
+        <label class="testi-field-label">Rol / Empresa</label>
+        <input class="testi-input" id="t-role" type="text" placeholder="Director de producción, XYZ">
+      </div>
+    </div>
+
+    <div class="testi-form-field">
+      <label class="testi-field-label">Proyecto / Contexto</label>
+      <input class="testi-input" id="t-project" type="text" placeholder="Ej: Fiesta de la Vendimia 2023">
+    </div>
+
+    <div class="testi-form-field">
+      <label class="testi-field-label">Mensaje *</label>
+      <textarea class="testi-textarea" id="t-msg" placeholder="Contá tu experiencia trabajando con Cate..."></textarea>
+    </div>
+
+    <button class="testi-submit" onclick="submitTestimonial()">Enviar →</button>
+    <div class="testi-status" id="t-status"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
 <section id="contact">
-  <p class="section-label reveal">05 / Contact</p>
-  
+  <p class="section-label reveal">06 / Contact</p>
+
   <div class="avail-badge reveal">
     <div class="avail-dot"></div>Available for projects in Europe
   </div>
@@ -565,19 +611,16 @@
         <a href="mailto:cate.amezaga@gmail.com" style="color: inherit; text-decoration: none;">cate.amezaga@gmail.com</a>
       </span>
     </div>
-
     <div class="contact-meta-item">
       <span class="contact-meta-label">Phone / WhatsApp</span>
       <span class="contact-meta-val">
         <a href="https://wa.me/34664182882" target="_blank" style="color: var(--red); text-decoration: none;">+34 664 182 882</a>
       </span>
     </div>
-
     <div class="contact-meta-item">
       <span class="contact-meta-label">Based in</span>
       <span class="contact-meta-val">Barcelona, Spain</span>
     </div>
-
     <div class="contact-meta-item">
       <span class="contact-meta-label">Availability</span>
       <span class="contact-meta-val">Seasonal · Touring · EU</span>
@@ -586,11 +629,12 @@
 </section>
 
 <footer>
-  <p>© 2026 Caterina Amézaga — Creative · Motion · Mapping ·  Live Events & TV</p>
+  <p>© 2026 Caterina Amézaga — Creative · Motion · Mapping · Live Events & TV</p>
   <p>Barcelona, Spain &nbsp;·&nbsp; EU Work Authorization</p>
 </footer>
 
 <script>
+  /* === TOGGLE PROJECTS === */
   function toggleProject(header) {
     const item = header.parentElement;
     const isOpen = item.classList.contains('open');
@@ -598,23 +642,120 @@
     if (!isOpen) item.classList.add('open');
   }
 
+  /* === CURSOR === */
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
-  (function animateRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateRing); })();
-  document.querySelectorAll('a, .project-header, .skill-cat').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.width='60px'; ring.style.height='60px'; ring.style.borderColor='rgba(232,0,61,0.7)'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='rgba(232,0,61,0.4)'; });
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
+  document.querySelectorAll('a, .project-header, .skill-cat, .testi-submit').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+      ring.style.width = '60px'; ring.style.height = '60px';
+      ring.style.borderColor = 'rgba(255,127,110,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      ring.style.width = '36px'; ring.style.height = '36px';
+      ring.style.borderColor = 'rgba(255,127,110,0.4)';
+    });
   });
 
+  /* === SCROLL REVEAL === */
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  const dateElement = document.getElementById('current-date');
-const options = { year: 'numeric', month: 'long', day: 'numeric' };
-dateElement.innerText = new Date().toLocaleDateString('es-ES', options);
+
+  /* === DATE === */
+  const dateEl = document.getElementById('current-date');
+  if (dateEl) dateEl.innerText = new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  /* === TESTIMONIALES === */
+  const STORAGE_KEY = 'ca_testimonials_v1';
+
+  function getTestimonials() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveTestimonials(list) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); } catch(e) {}
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderTestimonials() {
+    const list = getTestimonials();
+    const container = document.getElementById('testimonials-list');
+    if (!container) return;
+    if (list.length === 0) {
+      container.innerHTML = '<p class="testi-empty">Todavía no hay recomendaciones. ¡Sé la primera persona en dejar una!</p>';
+      return;
+    }
+    container.innerHTML = list.map(t => `
+      <div class="testi-card">
+        <div>
+          ${t.project ? '<p class="testi-project">' + escHtml(t.project) + '</p>' : ''}
+          <p class="testi-quote">"${escHtml(t.message)}"</p>
+          <p class="testi-name">${escHtml(t.name)}</p>
+          ${t.role ? '<p class="testi-role">' + escHtml(t.role) + '</p>' : ''}
+        </div>
+        <span class="testi-date">${escHtml(t.date)}</span>
+      </div>
+    `).join('');
+  }
+
+  function submitTestimonial() {
+    const name    = document.getElementById('t-name').value.trim();
+    const role    = document.getElementById('t-role').value.trim();
+    const project = document.getElementById('t-project').value.trim();
+    const message = document.getElementById('t-msg').value.trim();
+    const status  = document.getElementById('t-status');
+
+    if (!name || !message) {
+      status.style.color = 'var(--red)';
+      status.textContent = '✕  El nombre y el mensaje son obligatorios.';
+      return;
+    }
+
+    const list = getTestimonials();
+    list.unshift({
+      name, role, project, message,
+      date: new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'short' })
+    });
+    saveTestimonials(list);
+    renderTestimonials();
+
+    document.getElementById('t-name').value    = '';
+    document.getElementById('t-role').value    = '';
+    document.getElementById('t-project').value = '';
+    document.getElementById('t-msg').value     = '';
+
+    status.style.color = '#22c55e';
+    status.textContent = '✓  ¡Gracias! Tu recomendación fue publicada.';
+    setTimeout(() => { status.textContent = ''; }, 5000);
+  }
+
+  renderTestimonials();
 </script>
 </body>
 </html>
